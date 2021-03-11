@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -29,6 +30,13 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
+});
+
+// 저장하기 전 실행
+userSchema.pre("save", function (next) {
+  // 비밀번호 암호화
+
+  next();
 });
 
 const User = mongoose.model("User", userSchema);
