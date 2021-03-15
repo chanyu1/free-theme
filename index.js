@@ -22,7 +22,7 @@ mongoose
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello World! 안녕"));
+app.get("/", (req, res) => res.send("Hello World!"));
 
 app.post("/api/users/register", (req, res) => {
   const user = new User(req.body);
@@ -79,7 +79,10 @@ app.get("/api/users/auth", auth, (req, res) => {
 });
 
 app.get("/api/users/logout", auth, (req, res) => {
-  User.findOneAndUpdate({ _id: req.user._id });
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({ success: true });
+  });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
