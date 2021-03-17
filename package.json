@@ -1,5 +1,5 @@
 {
-  "name": "reactfilm",
+  "name": "kou-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chanyu1/ReactFilm.git"
+    "url": "git+https://github.com/chanyu1/KOU-app.git"
   },
   "bugs": {
-    "url": "https://github.com/chanyu1/ReactFilm/issues"
+    "url": "https://github.com/chanyu1/KOU-app/issues"
   },
-  "homepage": "https://github.com/chanyu1/ReactFilm#readme"
+  "homepage": "https://github.com/chanyu1/KOU-app#readme"
 }
