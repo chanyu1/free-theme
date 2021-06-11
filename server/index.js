@@ -18,7 +18,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log("MongoDB connected..."))
+  .then(() => console.log("MongoDB connected!"))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => res.send("Hello World!"));
