@@ -3,9 +3,9 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 
 function LandingPage(props) {
-  useEffect(() => {
-    Axios.get("/api/hello").then((response) => console.log(response.data));
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("/api/hello").then((response) => console.log(response.data));
+  // }, []);
 
   const logoutHandler = () => {
     Axios.get("/api/users/logout").then((response) => {
