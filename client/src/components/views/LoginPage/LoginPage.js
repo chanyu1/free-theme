@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../../_actions/user_action";
-import { withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../../_actions/user_action';
+import { withRouter } from 'react-router-dom';
 
 function LoginPage(props) {
   const dispatch = useDispatch();
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -26,9 +26,9 @@ function LoginPage(props) {
 
     dispatch(loginUser(body)).then((response) => {
       if (response.payload.loginSuccess) {
-        props.history.push("/");
+        props.history.push('/');
       } else {
-        alert("Failed to sign in.");
+        alert('Failed to sign in.');
       }
     });
   };
@@ -36,15 +36,15 @@ function LoginPage(props) {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100vh',
       }}
     >
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={onSubmitHandler}
       >
         <label>Email</label>

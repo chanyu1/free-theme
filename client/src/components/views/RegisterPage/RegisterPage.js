@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../../_actions/user_action";
-import { withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../_actions/user_action';
+import { withRouter } from 'react-router-dom';
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
 
-  const [Email, setEmail] = useState("");
-  const [Name, setName] = useState("");
-  const [Password, setPassword] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [Email, setEmail] = useState('');
+  const [Name, setName] = useState('');
+  const [Password, setPassword] = useState('');
+  const [ConfirmPassword, setConfirmPassword] = useState('');
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -27,7 +27,7 @@ function RegisterPage(props) {
     event.preventDefault();
 
     if (Password !== ConfirmPassword) {
-      return alert("비밀번호가 일치하지 않습니다.");
+      return alert('비밀번호가 일치하지 않습니다.');
     }
 
     let body = {
@@ -38,9 +38,9 @@ function RegisterPage(props) {
 
     dispatch(registerUser(body)).then((response) => {
       if (response.payload.success) {
-        props.history.push("/login");
+        props.history.push('/login');
       } else {
-        alert("Failed to sign up.");
+        alert('Failed to sign up.');
       }
     });
   };
@@ -48,15 +48,15 @@ function RegisterPage(props) {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100vh',
       }}
     >
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={onSubmitHandler}
       >
         <label>Email</label>

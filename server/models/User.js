@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 const userSchema = new Schema({
@@ -36,11 +36,11 @@ const userSchema = new Schema({
 });
 
 // 저장하기 전 실행
-userSchema.pre("save", function (next) {
+userSchema.pre('save', function (next) {
   // userSchema를 가리킴
   var user = this;
   // 비밀번호가 변환될 때만 실행
-  if (user.isModified("password")) {
+  if (user.isModified('password')) {
     // 비밀번호 암호화
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
@@ -65,7 +65,7 @@ userSchema.methods.comparePassword = function (plainPassword, callback) {
 userSchema.methods.generateToken = function (callback) {
   var user = this;
   // jsonwebtoken을 이용해서 토큰 생성
-  var token = jwt.sign(user._id.toHexString(), "secretToken");
+  var token = jwt.sign(user._id.toHexString(), 'secretToken');
 
   user.token = token;
   user.save(function (err, user) {
@@ -77,7 +77,7 @@ userSchema.methods.generateToken = function (callback) {
 userSchema.statics.findByToken = function (token, callback) {
   var user = this;
   // 토큰을 decode
-  jwt.verify(token, "secretToken", function (err, decoded) {
+  jwt.verify(token, 'secretToken', function (err, decoded) {
     // 유저 아이디를 이용해서 유저를 찾은 후, token이 일치하는지 확인
     user.findOne({ _id: decoded, token: token }, function (err, user) {
       if (err) return callback(err);
@@ -86,6 +86,6 @@ userSchema.statics.findByToken = function (token, callback) {
   });
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = { User };
