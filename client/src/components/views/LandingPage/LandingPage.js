@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+
+import classes from './LandingPage.module.css';
 
 function LandingPage(props) {
   // useEffect(() => {
@@ -8,7 +10,7 @@ function LandingPage(props) {
   // }, []);
 
   const logoutHandler = () => {
-    Axios.get('/api/users/logout').then((response) => {
+    axios.get('/api/users/logout').then((response) => {
       // console.log(response.data);
       if (response.data.success) {
         props.history.push('/login');
@@ -19,15 +21,7 @@ function LandingPage(props) {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
+    <div className={classes.testName}>
       <h2>시작페이지</h2>
       <button onClick={logoutHandler}>로그아웃</button>
     </div>
