@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
+
+import classes from './Header.module.css';
 
 function Header() {
   return (
     <nav>
-      <div className="navbar">
-        <Link to="/">KOU</Link>
+      <div className={classes.navbar}>
+        <Link to="/">
+          <h1>KOU</h1>
+        </Link>
       </div>
 
       <ul className="navbar__menu">
@@ -19,10 +26,10 @@ function Header() {
 
       <ul className="navbar__icons">
         <li>
-          <i className="twitter">t</i>
+          <FontAwesomeIcon icon={faFacebookSquare} />
         </li>
         <li>
-          <i className="facebook">f</i>
+          <FontAwesomeIcon icon={faInstagramSquare} />
         </li>
       </ul>
 
