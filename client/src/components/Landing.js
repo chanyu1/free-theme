@@ -2,14 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Landing() {
-  // useEffect(() => {
-  //   axios.get("/api/hello").then((response) => console.log(response.data));
-  // }, []);
-
   return (
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',

@@ -41,26 +41,23 @@ function Header(props) {
         {/* <div className={classes.navbar}> */}
         <Link
           style={{ fontFamily: 'Lexend, sans-serif', fontSize: '50px' }}
-          to="/dashboard"
+          to="/photos"
           className="left brand-logo"
         >
           KOU
         </Link>
         <ul className="right">
-          <li key="1">Photo</li>
-          <li key="2" style={{ margin: '0 10px' }}>
-            Credits:
-            {/* {this.props.auth.credits} */}
-          </li>
+          {/* <li key="1">Photo</li> */}
+          {/* <li key="2" style={{ margin: '0 10px' }}> */}
+          {/* Credits */}
+          {/* {this.props.auth.credits} */}
+          {/* </li> */}
           <li key="3">
             <a onClick={logoutHandler}>logout</a>
             {/* <a href="/api/users/logout"></a> */}
           </li>
         </ul>
       </div>
-      {/* <Link to="#" className="navbar__toggleBtn">
-          <i className="fas fa-bars"></i>
-        </Link> */}
     </nav>
   );
 }

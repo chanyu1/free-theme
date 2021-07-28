@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../_actions/user_action';
+import { loginUser } from '../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 
 function Login(props) {
@@ -26,7 +26,7 @@ function Login(props) {
 
     dispatch(loginUser(body)).then((response) => {
       if (response.payload.loginSuccess) {
-        props.history.push('/dashboard');
+        props.history.push('/photos');
       } else {
         alert('Failed to sign in.');
       }
