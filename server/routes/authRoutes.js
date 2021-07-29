@@ -2,6 +2,34 @@ const { auth } = require('../middlewares/auth');
 const { User } = require('../models/User');
 
 module.exports = (app) => {
+  // app.get(
+  //   '/auth/google',
+  //   passport.authenticate('google', {
+  //     scope: ['profile', 'email'],
+  //   }),
+  // );
+
+  // app.get(
+  //   '/auth/google/callback',
+  //   passport.authenticate('google'),
+  //   (req, res) => {
+  //     res.redirect('/surveys');
+  //   },
+  // );
+
+  // app.get('/api/logout', (req, res) => {
+  //   // console.log("logout", req.user);
+  //   req.logout();
+  //   res.redirect('/');
+  // });
+
+  // app.get('/api/current_user', (req, res) => {
+  //   // console.log("current_user");
+  //   // console.log(req.session);
+  //   // res.send(req.session);
+  //   res.send(req.user);
+  // });
+
   // app.get("/", (req, res) => res.send("Hello World!"));
 
   // app.get("/api/hello", (req, res) => {
@@ -25,7 +53,7 @@ module.exports = (app) => {
       if (!user) {
         return res.json({
           loginSuccess: false,
-          message: '해당 유저가 없습니다.',
+          message: 'No such user exists!',
         });
       }
       // 요청된 이메일이 DB에 있다면 비밀번호 확인
@@ -33,7 +61,7 @@ module.exports = (app) => {
         if (!isMatch) {
           return res.json({
             loginSuccess: false,
-            message: '비밀번호가 틀렸습니다.',
+            message: 'The password is incorrect!',
           });
         }
         // 비밀번호가 맞으면 토큰 생성
