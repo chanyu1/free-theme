@@ -1,21 +1,22 @@
+const passport = require('passport');
 const { auth } = require('../middlewares/auth');
 const { User } = require('../models/User');
 
 module.exports = (app) => {
-  // app.get(
-  //   '/auth/google',
-  //   passport.authenticate('google', {
-  //     scope: ['profile', 'email'],
-  //   }),
-  // );
+  app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: ['profile', 'email'],
+    }),
+  );
 
-  // app.get(
-  //   '/auth/google/callback',
-  //   passport.authenticate('google'),
-  //   (req, res) => {
-  //     res.redirect('/surveys');
-  //   },
-  // );
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/photos');
+    },
+  );
 
   // app.get('/api/logout', (req, res) => {
   //   // console.log("logout", req.user);

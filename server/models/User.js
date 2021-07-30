@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 const userSchema = new Schema({
+  googleId: {
+    type: String,
+  },
   name: {
     type: String,
     maxlength: 50,
