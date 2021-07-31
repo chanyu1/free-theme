@@ -18,25 +18,6 @@ module.exports = (app) => {
     },
   );
 
-  // app.get('/api/logout', (req, res) => {
-  //   // console.log("logout", req.user);
-  //   req.logout();
-  //   res.redirect('/');
-  // });
-
-  // app.get('/api/current_user', (req, res) => {
-  //   // console.log("current_user");
-  //   // console.log(req.session);
-  //   // res.send(req.session);
-  //   res.send(req.user);
-  // });
-
-  // app.get("/", (req, res) => res.send("Hello World!"));
-
-  // app.get("/api/hello", (req, res) => {
-  //   res.send("hello~~");
-  // });
-
   app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
 
@@ -102,5 +83,11 @@ module.exports = (app) => {
       }
       return res.status(200).send({ success: true });
     });
+  });
+
+  app.get('/api/logout', (req, res) => {
+    // console.log('logout', req);
+    req.logout();
+    res.redirect('/');
   });
 };

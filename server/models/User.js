@@ -5,37 +5,14 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 const userSchema = new Schema({
-  googleId: {
-    type: String,
-  },
-  name: {
-    type: String,
-    maxlength: 50,
-  },
-  email: {
-    type: String,
-    trim: true,
-    unique: 1,
-  },
-  password: {
-    type: String,
-    minlength: 5,
-  },
-  lastname: {
-    type: String,
-    maxlength: 50,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  image: String,
-  token: {
-    type: String,
-  },
-  tokenExp: {
-    type: Number,
-  },
+  email: { type: String, trim: true, unique: 1 },
+  password: { type: String, minlength: 5 },
+  name: { type: String, maxlength: 50 },
+  image: { type: String },
+  role: { type: Number, default: 0 },
+  token: { type: String },
+  tokenExp: { type: Number },
+  googleId: { type: String },
 });
 
 // 저장하기 전 실행

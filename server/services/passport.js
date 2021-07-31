@@ -3,6 +3,18 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('../config/keys');
 const { User } = require('../models/User');
 
+passport.serializeUser((user, done) => {
+  console.log('serializeUser, ', user);
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  console.log('deserializeUser, ', id);
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -12,15 +24,16 @@ passport.use(
       proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
-      // console.log('accessToken: ', accessToken);
-      // console.log('refreshToken: ', refreshToken);
-      // console.log('profile: ', profile);
-      // const existingUser = await User.findOne({ googleId: profile.id });
-      // if (existingUser) {
-      //   return done(null, existingUser);
-      // }
-      // const user = await new User({ googleId: profile.id }).save();
-      // done(null, user);
+      // console.log('googleId: ', profile.googleId);
+      // console.log('email: ', profile.emails.value);
+      // console.log('name: ', profile.displayName);
+      // console.log('image: ', profile.photos.value);
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     },
   ),
 );
