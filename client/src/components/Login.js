@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../_actions/user_action';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-function Login(props) {
-  const dispatch = useDispatch();
+import * as actions from '../_actions';
 
+function Login({ loginUser, history }) {
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
   };
+
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value);
   };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    // console.log("Email", Email);
-    // console.log("Password", Password);
+
     let body = {
       email: Email,
       password: Password,
     };
 
-    dispatch(loginUser(body)).then((response) => {
-      if (response.payload.loginSuccess) {
-        props.history.push('/photos');
-      } else {
-        alert('Failed to sign in.');
-      }
-    });
+    loginUser(body, history);
   };
 
   return (
@@ -54,8 +48,13 @@ function Login(props) {
         <br />
         <button type="submit">Login</button>
       </form>
+      <ul>
+        <li>
+          <a href="/auth/google">Login With Google</a>
+        </li>
+      </ul>
     </div>
   );
 }
 
-export default withRouter(Login);
+export default connect(null, actions)(withRouter(Login));

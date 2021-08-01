@@ -1,23 +1,7 @@
-const passport = require('passport');
 const { auth } = require('../middlewares/auth');
 const { User } = require('../models/User');
 
 module.exports = (app) => {
-  app.get(
-    '/auth/google',
-    passport.authenticate('google', {
-      scope: ['profile', 'email'],
-    }),
-  );
-
-  app.get(
-    '/auth/google/callback',
-    passport.authenticate('google'),
-    (req, res) => {
-      res.redirect('/photos');
-    },
-  );
-
   app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
 
@@ -70,9 +54,8 @@ module.exports = (app) => {
       isAuth: true,
       email: req.user.email,
       name: req.user.name,
-      lastname: req.user.lastname,
-      role: req.user.role,
       image: req.user.image,
+      role: req.user.role,
     });
   });
 
@@ -85,9 +68,9 @@ module.exports = (app) => {
     });
   });
 
-  app.get('/api/logout', (req, res) => {
-    // console.log('logout', req);
-    req.logout();
-    res.redirect('/');
-  });
+  // app.get('/api/logout', (req, res) => {
+  //   // console.log('logout', req);
+  //   req.logout();
+  //   res.redirect('/');
+  // });
 };

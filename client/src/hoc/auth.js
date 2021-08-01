@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth } from '../_actions/user_action';
+import { auth } from '../_actions';
 
 export default (SpecificComponent, option, adminRoute = null) => {
   // null  => 아무나 출입 가능한 페이지
@@ -11,7 +11,7 @@ export default (SpecificComponent, option, adminRoute = null) => {
 
     useEffect(() => {
       dispatch(auth()).then((response) => {
-        // console.log(response);
+        console.log('auth, ', response);
         if (!response.payload.isAuth) {
           // 로그인하지 않은 상태
           if (option) {
