@@ -1,22 +1,17 @@
 import React from 'react';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
+import * as actions from '../_actions';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 // import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 
-function Header(props) {
+function Header({ logoutUser, history }) {
   const logoutHandler = () => {
-    axios.get('/api/users/logout').then((response) => {
-      // console.log(response.data);
-      if (response.data.success) {
-        props.history.push('/');
-      } else {
-        alert('Failed to logout.');
-      }
-    });
+    logoutUser(history);
   };
 
   //   <li>
@@ -62,9 +57,9 @@ function Header(props) {
   );
 }
 
-function mapStateToProps({ auth }) {
-  console.log('auth', auth);
-  return { auth };
-}
+// function mapStateToProps({ auth }) {
+// console.log('auth', auth);
+// return { auth };
+// }
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(null, actions)(withRouter(Header));

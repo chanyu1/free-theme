@@ -1,9 +1,9 @@
 import React from 'react';
 
-function PhotoNewForm() {
+function PhotoForm() {
   return (
     <div>
-      <h5>PhotoNewForm</h5>
+      <h5>PhotoForm</h5>
       {/* {reviewFields} */}
       <button
         className="yellow darken-3 white-text btn-flat"
@@ -22,4 +22,4 @@ function PhotoNewForm() {
   );
 }
 
-export default PhotoNewForm;
+export default PhotoForm;

@@ -1,15 +1,22 @@
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from '../_actions/types';
+import {
+  AUTH_USER,
+  REGISTER_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+} from '../_actions/types';
 
-// eslint-disable-next-line
-export default function (state = {}, action) {
+export default (state = {}, action) => {
+  // console.log('action.payload: ', action.payload);
   switch (action.type) {
-    case LOGIN_USER:
-      return { ...state, loginSuccess: action.payload };
-    case REGISTER_USER:
-      return { ...state, register: action.payload };
     case AUTH_USER:
       return { ...state, userData: action.payload };
+    case REGISTER_USER:
+      return { ...state, registerSuccess: action.payload };
+    case LOGIN_USER:
+      return { ...state, loginSuccess: action.payload };
+    case LOGOUT_USER:
+      return { ...state, logoutSuccess: action.payload };
     default:
       return state;
   }
-}
+};

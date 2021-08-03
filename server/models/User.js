@@ -6,13 +6,12 @@ const saltRounds = 10;
 
 const userSchema = new Schema({
   email: { type: String, trim: true, unique: 1 },
-  password: { type: String, minlength: 5 },
   name: { type: String, maxlength: 50 },
+  password: { type: String, minlength: 5 },
   image: { type: String },
   role: { type: Number, default: 0 },
   token: { type: String },
   tokenExp: { type: Number },
-  googleId: { type: String },
 });
 
 // 저장하기 전 실행

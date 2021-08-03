@@ -1,5 +1,30 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
+
+import { AUTH_USER, REGISTER_USER, LOGIN_USER, LOGOUT_USER } from './types';
+
+export const authUser = (history, option, adminRoute) => async (dispatch) => {
+  const res = await axios.get('/api/users/auth');
+
+  if (!res.data.isAuth && option) {
+    history.push('/login');
+  } else if (!res.data.isAdmin && adminRoute) {
+    history.push('/admin');
+  } else if (res.data.isAuth && !option) {
+    history.push('/photos');
+  }
+  dispatch({ type: AUTH_USER, payload: res.data });
+};
+
+export const registerUser = (dataToSubmit, history) => async (dispatch) => {
+  const res = await axios.post('/api/users/register', dataToSubmit);
+
+  if (res.data.registerSuccess) {
+    history.push('/login');
+    dispatch({ type: REGISTER_USER, payload: res.data });
+  } else {
+    alert(res.data.message);
+  }
+};
 
 export const loginUser = (dataToSubmit, history) => async (dispatch) => {
   const res = await axios.post('/api/users/login', dataToSubmit);
@@ -8,56 +33,17 @@ export const loginUser = (dataToSubmit, history) => async (dispatch) => {
     history.push('/photos');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
-    alert('Failed to sign in.');
+    alert(res.data.message);
   }
 };
 
-export function registerUser(dataToSubmit) {
-  const request = axios
-    .post('/api/users/register', dataToSubmit)
-    .then((response) => response.data);
-  return {
-    type: REGISTER_USER,
-    payload: request,
-  };
-}
+export const logoutUser = (history) => async (dispatch) => {
+  const res = await axios.get('/api/users/logout');
 
-export function auth() {
-  const request = axios
-    .get('/api/users/auth')
-    .then((response) => response.data);
-  return {
-    type: AUTH_USER,
-    payload: request,
-  };
-}
-
-// export function loginUser(dataToSubmit) {
-//   const request = axios
-//     .post('/api/users/login', dataToSubmit)
-//     .then((response) => response.data);
-//   return {
-//     type: LOGIN_USER,
-//     payload: request,
-//   };
-// }
-
-// export function registerUser(dataToSubmit) {
-//   const request = axios
-//     .post('/api/users/register', dataToSubmit)
-//     .then((response) => response.data);
-//   return {
-//     type: REGISTER_USER,
-//     payload: request,
-//   };
-// }
-
-// export function auth() {
-//   const request = axios
-//     .get('/api/users/auth')
-//     .then((response) => response.data);
-//   return {
-//     type: AUTH_USER,
-//     payload: request,
-//   };
-// }
+  if (res.data.logoutSuccess) {
+    history.push('/');
+    dispatch({ type: LOGOUT_USER, payload: res.data });
+  } else {
+    alert(res.data.message);
+  }
+};

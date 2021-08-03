@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../_actions';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-function Register(props) {
-  const dispatch = useDispatch();
+import * as actions from '../../_actions';
 
+function Register({ registerUser, history }) {
   const [Email, setEmail] = useState('');
   const [Name, setName] = useState('');
   const [Password, setPassword] = useState('');
@@ -14,49 +13,41 @@ function Register(props) {
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
   };
+
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };
+
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value);
   };
+
   const onConfirmPasswordHandler = (event) => {
     setConfirmPassword(event.currentTarget.value);
   };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    if (Password !== ConfirmPassword) {
-      return alert('비밀번호가 일치하지 않습니다.');
-    }
-
-    let body = {
-      email: Email,
-      name: Name,
-      password: Password,
-    };
-
-    dispatch(registerUser(body)).then((response) => {
-      if (response.payload.success) {
-        props.history.push('/login');
-      } else {
-        alert('Failed to sign up.');
-      }
-    });
+    Password === ConfirmPassword
+      ? registerUser({ email: Email, password: Password, name: Name }, history)
+      : alert('Passwords do not match.');
   };
 
   return (
     <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
+      style={
+        {
+          // display: 'flex',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          // width: '100%',
+          // height: '100vh',
+        }
+      }
     >
       <form
-        style={{ display: 'flex', flexDirection: 'column' }}
+        // style={{ display: 'flex', flexDirection: 'column' }}
         onSubmit={onSubmitHandler}
       >
         <label>Email</label>
@@ -72,10 +63,10 @@ function Register(props) {
           onChange={onConfirmPasswordHandler}
         />
         <br />
-        <button type="submit">회원 가입</button>
+        <button type="submit">CREATE FREE ACCOUNT</button>
       </form>
     </div>
   );
 }
 
-export default withRouter(Register);
+export default connect(null, actions)(withRouter(Register));

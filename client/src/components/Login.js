@@ -19,10 +19,7 @@ function Login({ loginUser, history }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    let body = {
-      email: Email,
-      password: Password,
-    };
+    let body = { email: Email, password: Password };
 
     loginUser(body, history);
   };
@@ -48,11 +45,6 @@ function Login({ loginUser, history }) {
         <br />
         <button type="submit">Login</button>
       </form>
-      <ul>
-        <li>
-          <a href="/auth/google">Login With Google</a>
-        </li>
-      </ul>
     </div>
   );
 }
