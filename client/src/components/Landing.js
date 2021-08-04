@@ -13,8 +13,8 @@ function Landing() {
         height: '100vh',
       }}
     >
-      <Link to="/register">가입하기</Link>
-      <Link to="/login">로그인</Link>
+      <Link to="/signup">Sign Up</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 }

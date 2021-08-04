@@ -11,7 +11,7 @@ export default (SpecificComponent, option, adminRoute = null) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      console.log('hoc auth useEffect');
+      // console.log('hoc auth useEffect');
       dispatch(authUser(history, option, adminRoute));
     }, []);
 

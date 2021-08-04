@@ -6,9 +6,9 @@ import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
-import RegisterField from './RegisterField';
+import LoginField from './LoginField';
 
-function RegisterForm({ registerUser, history }) {
+function LoginForm({ loginUser, history }) {
   const renderFields = () => {
     return _.map(formFieldTexts, ({ label, name, type }) => {
       return (
@@ -17,7 +17,7 @@ function RegisterForm({ registerUser, history }) {
           name={name}
           type={type}
           key={name}
-          component={RegisterField}
+          component={LoginField}
         />
       );
     });
@@ -26,16 +26,13 @@ function RegisterForm({ registerUser, history }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    event.target.password.value === event.target.confirmPassword.value
-      ? registerUser(
-          {
-            email: event.target.email.value,
-            password: event.target.password.value,
-            name: event.target.name.value,
-          },
-          history,
-        )
-      : alert('Passwords do not match.');
+    loginUser(
+      {
+        email: event.target.email.value,
+        password: event.target.password.value,
+      },
+      history,
+    );
   };
 
   return (
@@ -50,14 +47,11 @@ function RegisterForm({ registerUser, history }) {
     >
       <form onSubmit={onSubmitHandler}>
         {renderFields()}
-        <Link to="/" className="red btn-flat white-text">
-          Cancel
-        </Link>
-        <button
-          type="submit"
-          className="yellow darken-3 btn-flat right white-text"
-        >
+        <Link to="/signup" className="yellow darken-3 btn-flat white-text">
           Sign Up
+        </Link>
+        <button type="submit" className="teal btn-flat right white-text">
+          Login
           <i className="material-icons right">done</i>
         </button>
       </form>
@@ -79,5 +73,5 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: 'registerForm',
-})(connect(null, actions)(withRouter(RegisterForm)));
+  form: 'loginForm',
+})(connect(null, actions)(withRouter(LoginForm)));

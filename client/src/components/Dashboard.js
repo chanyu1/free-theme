@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import PhotoList from './photos/PhotoList';
 
 function Dashboard() {
   return (
-    <div>
+    <Fragment>
       <Header />
       <PhotoList />
       <div className="fixed-action-btn">
@@ -19,7 +19,7 @@ function Dashboard() {
           <i className="material-icons">add</i>
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 }
 
