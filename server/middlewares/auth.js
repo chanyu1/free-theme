@@ -1,4 +1,6 @@
-const { User } = require('../models/User');
+const mongoose = require('mongoose');
+
+const User = mongoose.model('users');
 
 let auth = (req, res, next) => {
   // 클라이언트 쿠키에서 토큰을 가져온다

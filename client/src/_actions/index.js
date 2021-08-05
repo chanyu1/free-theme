@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { AUTH_USER, REGISTER_USER, LOGIN_USER, LOGOUT_USER } from './types';
+import {
+  AUTH_USER,
+  REGISTER_USER,
+  LOGIN_USER,
+  LOGOUT_USER,
+  SUBMIT_PHOTO,
+} from './types';
 
 export const authUser = (history, option, adminRoute) => async (dispatch) => {
   const res = await axios.get('/api/users/auth');
@@ -46,4 +52,14 @@ export const logoutUser = (history) => async (dispatch) => {
   } else {
     alert(res.data.message);
   }
+};
+
+export const submitPhoto = (dataToSubmit, history) => async (dispatch) => {
+  const res = await axios.post('/api/photos', dataToSubmit, {
+    header: { 'content-type': 'multipart/form-data' },
+  });
+  console.log(res);
+
+  history.push('/photos');
+  dispatch({ type: SUBMIT_PHOTO, payload: res.data });
 };

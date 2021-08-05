@@ -1,25 +1,80 @@
-import React from 'react';
+import _ from 'lodash';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { reduxForm, Field } from 'redux-form';
 
-function PhotoForm() {
+import * as actions from '../../_actions';
+import formFieldTexts from './formFieldTexts';
+import PhotoField from './PhotoField';
+
+function PhotoForm({ submitPhoto, history }) {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  // const renderFields = () => {
+  //   return _.map(formFieldTexts, ({ label, name, type }) => {
+  //     return (
+  //       <Field
+  //         label={label}
+  //         name={name}
+  //         type={type}
+  //         key={name}
+  //         component={PhotoField}
+  //       />
+  //     );
+  //   });
+  // };
+
+  const fileSelectHandler = (event) => {
+    setSelectedFile({ selectedFile: event.target.files[0] });
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    submitPhoto(formData, history);
+  };
+
   return (
     <div>
-      <h5>PhotoForm</h5>
-      {/* {reviewFields} */}
-      <button
-        className="yellow darken-3 white-text btn-flat"
-        // onClick={onCancel}
-      >
-        Back
-      </button>
-      <button
-        // onClick={() => submitSurvey(formValues, history)}
-        className="green btn-flat right white-text"
-      >
-        Submit
-        <i className="material-icons right">email</i>
-      </button>
+      <form onSubmit={onSubmitHandler}>
+        <input
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          onChange={fileSelectHandler}
+        />
+        {/* {renderFields()} */}
+        <Link to="/photos" className="red white-text btn-flat">
+          Cancel
+        </Link>
+        <button
+          type="submit"
+          className="yellow darken-3 btn-flat right white-text"
+        >
+          Submit
+          <i className="material-icons right">done</i>
+        </button>
+      </form>
     </div>
   );
 }
 
-export default PhotoForm;
+function validate(values) {
+  const errors = {};
+
+  _.each(formFieldTexts, ({ name, noValueError }) => {
+    if (!values[name]) {
+      errors[name] = noValueError;
+    }
+  });
+
+  return errors;
+}
+
+export default reduxForm({
+  validate,
+  form: 'photoForm',
+})(connect(null, actions)(withRouter(PhotoForm)));

@@ -1,5 +1,7 @@
+const mongoose = require('mongoose');
 const { auth } = require('../middlewares/auth');
-const { User } = require('../models/User');
+
+const User = mongoose.model('users');
 
 module.exports = (app) => {
   app.get('/api/users/auth', auth, (req, res) => {

@@ -1,6 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const keys = require('./config/keys');
+require('./models/User');
+require('./models/Photo');
 
 const app = express();
 
@@ -9,6 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 require('./routes/userRoutes')(app);
+require('./routes/photoRoutes')(app);
 
 const mongoose = require('mongoose');
 mongoose

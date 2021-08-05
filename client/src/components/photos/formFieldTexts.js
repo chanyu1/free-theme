@@ -1,17 +1,21 @@
 export default [
   {
     label: 'Photo',
-    name: 'subject',
-    noValueError: 'Provide a Subject Line',
+    name: 'photo',
+    type: 'file',
+    accept: 'image/*',
+    noValueError: 'Provide a Email',
   },
   {
     label: 'Theme',
-    name: 'body',
-    noValueError: 'Provide a Email Body',
+    name: 'theme',
+    type: 'text',
+    noValueError: 'Provide a Password',
   },
   {
     label: 'Description',
-    name: 'recipients',
-    noValueError: 'Provide a Recipient List',
+    name: 'description',
+    type: 'text',
+    noValueError: 'Provide a Password',
   },
 ];

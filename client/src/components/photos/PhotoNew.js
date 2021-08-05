@@ -7,7 +7,6 @@ function PhotoNew() {
   return (
     <div>
       <Header />
-      PhotoNew
       <PhotoForm />
     </div>
   );
