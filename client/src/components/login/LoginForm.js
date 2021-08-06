@@ -8,7 +8,7 @@ import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
 import LoginField from './LoginField';
 
-function LoginForm({ loginUser, history }) {
+function LoginForm({ loginUser }) {
   const renderFields = () => {
     return _.map(formFieldTexts, ({ label, name, type }) => {
       return (
@@ -26,13 +26,10 @@ function LoginForm({ loginUser, history }) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    loginUser(
-      {
-        email: event.target.email.value,
-        password: event.target.password.value,
-      },
-      history,
-    );
+    loginUser({
+      email: event.target.email.value,
+      password: event.target.password.value,
+    });
   };
 
   return (

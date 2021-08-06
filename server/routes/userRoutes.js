@@ -4,6 +4,11 @@ const { auth } = require('../middlewares/auth');
 const User = mongoose.model('users');
 
 module.exports = (app) => {
+  app.get('/api/current_user', auth, (req, res) => {
+    // res.send(req.user);
+    res.send({ isAuth: true });
+  });
+
   app.get('/api/users/auth', auth, (req, res) => {
     // 여기까지 미들웨어(auth)를 통과해 왔다는 얘기는 Authentication이 True라는 뜻
     res.status(200).json({

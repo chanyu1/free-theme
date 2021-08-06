@@ -2,13 +2,11 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import Header from './Header';
 import PhotoList from './photos/PhotoList';
 
 function Dashboard() {
   return (
     <Fragment>
-      <Header />
       <PhotoList />
       <div className="fixed-action-btn">
         <Link

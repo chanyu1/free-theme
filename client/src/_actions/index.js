@@ -1,12 +1,18 @@
 import axios from 'axios';
-
 import {
+  FETCH_USER,
   AUTH_USER,
   REGISTER_USER,
   LOGIN_USER,
   LOGOUT_USER,
   SUBMIT_PHOTO,
 } from './types';
+
+export const fetchUser = () => async (dispatch) => {
+  const res = await axios.get('/api/current_user');
+
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
 
 export const authUser = (history, option, adminRoute) => async (dispatch) => {
   const res = await axios.get('/api/users/auth');
@@ -32,22 +38,24 @@ export const registerUser = (dataToSubmit, history) => async (dispatch) => {
   }
 };
 
-export const loginUser = (dataToSubmit, history) => async (dispatch) => {
+export const loginUser = (dataToSubmit) => async (dispatch) => {
   const res = await axios.post('/api/users/login', dataToSubmit);
 
   if (res.data.loginSuccess) {
-    history.push('/photos');
+    window.location.replace('/photos');
+    // history.push('/photos');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
     alert(res.data.message);
   }
 };
 
-export const logoutUser = (history) => async (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
   const res = await axios.get('/api/users/logout');
 
   if (res.data.logoutSuccess) {
-    history.push('/');
+    window.location.replace('/');
+    // history.push('/');
     dispatch({ type: LOGOUT_USER, payload: res.data });
   } else {
     alert(res.data.message);
@@ -58,7 +66,6 @@ export const submitPhoto = (dataToSubmit, history) => async (dispatch) => {
   const res = await axios.post('/api/photos', dataToSubmit, {
     header: { 'content-type': 'multipart/form-data' },
   });
-  console.log(res);
 
   history.push('/photos');
   dispatch({ type: SUBMIT_PHOTO, payload: res.data });
