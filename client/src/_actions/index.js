@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   FETCH_USER,
   AUTH_USER,
@@ -43,7 +44,6 @@ export const loginUser = (dataToSubmit) => async (dispatch) => {
 
   if (res.data.loginSuccess) {
     window.location.replace('/photos');
-    // history.push('/photos');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
     alert(res.data.message);
@@ -55,7 +55,6 @@ export const logoutUser = () => async (dispatch) => {
 
   if (res.data.logoutSuccess) {
     window.location.replace('/');
-    // history.push('/');
     dispatch({ type: LOGOUT_USER, payload: res.data });
   } else {
     alert(res.data.message);

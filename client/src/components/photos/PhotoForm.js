@@ -8,7 +8,7 @@ import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
 import PhotoField from './PhotoField';
 
-function PhotoForm({ submitPhoto, history }) {
+const PhotoForm = ({ submitPhoto, history }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   // const renderFields = () => {
@@ -60,7 +60,7 @@ function PhotoForm({ submitPhoto, history }) {
       </form>
     </div>
   );
-}
+};
 
 function validate(values) {
   const errors = {};

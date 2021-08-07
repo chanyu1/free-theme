@@ -49,7 +49,7 @@ function Header({ auth, logoutUser }) {
             fontSize: '36px',
             margin: '0 16px',
           }}
-          to="/photos"
+          to={auth && auth.isAuth ? '/photos' : '/'}
           className="left brand-logo"
         >
           KOU

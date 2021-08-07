@@ -2,12 +2,12 @@ import React from 'react';
 
 import PhotoForm from './PhotoForm';
 
-function PhotoNew() {
+const PhotoNew = () => {
   return (
     <div>
       <PhotoForm />
     </div>
   );
-}
+};
 
 export default PhotoNew;

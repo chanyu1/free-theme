@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import PhotoList from './photos/PhotoList';
 
-function Dashboard() {
+const Dashboard = () => {
   return (
     <Fragment>
       <PhotoList />
@@ -19,6 +19,6 @@ function Dashboard() {
       </div>
     </Fragment>
   );
-}
+};
 
 export default withRouter(Dashboard);

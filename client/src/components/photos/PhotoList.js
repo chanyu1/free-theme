@@ -1,7 +1,7 @@
 import React from 'react';
 
-function PhotoList() {
+const PhotoList = () => {
   return <div>PhotoList</div>;
-}
+};
 
 export default PhotoList;

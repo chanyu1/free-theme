@@ -8,7 +8,7 @@ import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
 import LoginField from './LoginField';
 
-function LoginForm({ loginUser }) {
+const LoginForm = ({ loginUser }) => {
   const renderFields = () => {
     return _.map(formFieldTexts, ({ label, name, type }) => {
       return (
@@ -38,8 +38,7 @@ function LoginForm({ loginUser }) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
-        height: '100vh',
+        height: '90vh',
       }}
     >
       <form onSubmit={onSubmitHandler}>
@@ -54,7 +53,7 @@ function LoginForm({ loginUser }) {
       </form>
     </div>
   );
-}
+};
 
 function validate(values) {
   const errors = {};

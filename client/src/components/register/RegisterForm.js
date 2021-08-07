@@ -8,7 +8,7 @@ import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
 import RegisterField from './RegisterField';
 
-function RegisterForm({ registerUser, history }) {
+const RegisterForm = ({ registerUser, history }) => {
   const renderFields = () => {
     return _.map(formFieldTexts, ({ label, name, type }) => {
       return (
@@ -44,8 +44,7 @@ function RegisterForm({ registerUser, history }) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
-        height: '100vh',
+        height: '90vh',
       }}
     >
       <form onSubmit={onSubmitHandler}>
@@ -63,7 +62,7 @@ function RegisterForm({ registerUser, history }) {
       </form>
     </div>
   );
-}
+};
 
 function validate(values) {
   const errors = {};

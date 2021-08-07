@@ -2,7 +2,7 @@ import React from 'react';
 
 import LoginForm from './LoginForm';
 
-function Login() {
+const Login = () => {
   return (
     <div>
       <LoginForm />
