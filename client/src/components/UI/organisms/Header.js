@@ -4,18 +4,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import * as actions from '../_actions';
+import * as actions from '../../../_actions';
 
-function Header({ auth, logoutUser }) {
+const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {
     return [
       <li key="logout">
-        <a
-          style={{ fontFamily: 'Lexend, sans-serif' }}
-          onClick={() => logoutUser()}
-        >
-          Logout
-        </a>
+        <a onClick={() => logoutUser()}>Logout</a>
       </li>,
       <li key="github">
         <a href="https://github.com/chanyu1" target="_blank" rel="noreferrer">
@@ -28,39 +23,34 @@ function Header({ auth, logoutUser }) {
   const logoutContent = () => {
     return [
       <li key="login">
-        <Link style={{ fontFamily: 'Lexend, sans-serif' }} to="/login">
-          Login
-        </Link>
+        <Link to="/login">Login</Link>
       </li>,
       <li key="signup">
-        <Link style={{ fontFamily: 'Lexend, sans-serif' }} to="/signup">
-          Sign up
-        </Link>
+        <Link to="/signup">Sign up</Link>
       </li>,
     ];
   };
 
   return (
     <nav>
-      <div className="nav-wrapper">
+      <div
+        style={{ fontFamily: 'Lexend, sans-serif', margin: '0 16px' }}
+        className="nav-wrapper"
+      >
         <Link
-          style={{
-            fontFamily: 'Lexend, sans-serif',
-            fontSize: '36px',
-            margin: '0 16px',
-          }}
-          to={auth && auth.isAuth ? '/photos' : '/'}
+          style={{ fontSize: '36px' }}
+          to={auth && auth.isAuth ? '/postcards' : '/'}
           className="left brand-logo"
         >
           KOU
         </Link>
-        <ul style={{ margin: '0 16px' }} className="right">
+        <ul className="right">
           {auth && auth.isAuth ? loginContent() : logoutContent()}
         </ul>
       </div>
     </nav>
   );
-}
+};
 
 function mapStateToProps({ auth }) {
   return { auth };

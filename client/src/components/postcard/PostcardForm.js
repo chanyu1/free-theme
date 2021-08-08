@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
@@ -8,7 +8,9 @@ import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
 import formField from '../UI/molecules/formField';
 
-const LoginForm = ({ loginUser }) => {
+const PostcardForm = ({ uploadPostcard, history }) => {
+  const [selectedFiles, setSelectedFiles] = useState(null);
+
   const renderFields = () => {
     return _.map(formFieldTexts, ({ label, name, type }) => {
       return (
@@ -23,12 +25,19 @@ const LoginForm = ({ loginUser }) => {
     });
   };
 
+  const fileSelectHandler = (event) => {
+    setSelectedFiles(event.target.files);
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    loginUser({
-      email: event.target.email.value,
-      password: event.target.password.value,
+
+    const formData = new FormData();
+    _.each(selectedFiles, (File) => {
+      formData.append('image', File);
     });
+    uploadPostcard(formData, history);
+    setSelectedFiles(null);
   };
 
   return (
@@ -41,12 +50,21 @@ const LoginForm = ({ loginUser }) => {
       }}
     >
       <form onSubmit={onSubmitHandler}>
+        <input
+          type="file"
+          accept="image/jpg,image/png,image/jpeg,image/gif"
+          onChange={fileSelectHandler}
+          multiple
+        />
         {renderFields()}
-        <Link to="/signup" className="yellow darken-3 btn-flat white-text">
-          Sign up
+        <Link to="/postcards" className="red white-text btn-flat">
+          Cancel
         </Link>
-        <button type="submit" className="teal btn-flat right white-text">
-          Login
+        <button
+          type="submit"
+          className="yellow darken-3 btn-flat right white-text"
+        >
+          Submit
           <i className="material-icons right">done</i>
         </button>
       </form>
@@ -55,7 +73,6 @@ const LoginForm = ({ loginUser }) => {
 };
 
 const validate = (values) => {
-  // console.log('validate, ', values);
   const errors = {};
   _.each(formFieldTexts, ({ name, noValueError }) => {
     if (!values[name]) {
@@ -67,5 +84,5 @@ const validate = (values) => {
 
 export default reduxForm({
   validate,
-  form: 'loginForm',
-})(connect(null, actions)(withRouter(LoginForm)));
+  form: 'postcardForm',
+})(connect(null, actions)(withRouter(PostcardForm)));

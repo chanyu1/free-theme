@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import * as actions from './_actions';
 import Auth from './hoc/auth';
-import Header from './components/Header';
-import Landing from './components/Landing';
-import Register from './components/register/Register';
-import Login from './components/login/Login';
-import Dashboard from './components/Dashboard';
-import PhotoNew from './components/photos/PhotoNew';
+import Header from './components/UI/organisms/Header';
+import Landing from './components/pages/Landing';
+import Register from './components/pages/Register';
+import Login from './components/pages/Login';
+import Dashboard from './components/pages/Dashboard';
+import PostcardNew from './components/pages/PostcardNew';
 
 class App extends Component {
   componentDidMount() {
@@ -24,8 +24,8 @@ class App extends Component {
           <Route exact path="/" component={Auth(Landing, false)} />
           <Route path="/signup" component={Auth(Register, false)} />
           <Route path="/login" component={Auth(Login, false)} />
-          <Route exact path="/photos" component={Auth(Dashboard, true)} />
-          <Route path="/photos/new" component={Auth(PhotoNew, true)} />
+          <Route exact path="/postcards" component={Auth(Dashboard, true)} />
+          <Route path="/postcards/new" component={Auth(PostcardNew, true)} />
         </Switch>
       </BrowserRouter>
     );

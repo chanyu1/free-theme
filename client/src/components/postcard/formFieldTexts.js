@@ -1,12 +1,5 @@
 export default [
   {
-    label: 'Photo',
-    name: 'photo',
-    type: 'file',
-    accept: 'image/*',
-    noValueError: 'Provide a Email',
-  },
-  {
     label: 'Theme',
     name: 'theme',
     type: 'text',

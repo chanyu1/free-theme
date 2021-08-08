@@ -2,16 +2,17 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const keys = require('./config/keys');
 require('./models/User');
-require('./models/Photo');
+require('./models/Postcard');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.Router());
 app.use(cookieParser());
 
 require('./routes/userRoutes')(app);
-require('./routes/photoRoutes')(app);
+require('./routes/postcardRoutes')(app);
 
 const mongoose = require('mongoose');
 mongoose

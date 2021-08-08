@@ -3,11 +3,11 @@ import { reducer as reduxForm } from 'redux-form';
 
 import authReducer from './authReducer';
 import usersReducer from './usersReducer';
-// import photosReducer from './photosReducer';
+import postcardsReducer from './postcardsReducer';
 
 export default combineReducers({
   form: reduxForm,
   auth: authReducer,
   users: usersReducer,
-  // photos: photosReducer,
+  postcards: postcardsReducer,
 });

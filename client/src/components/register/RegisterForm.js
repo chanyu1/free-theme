@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions';
 import formFieldTexts from './formFieldTexts';
-import RegisterField from './RegisterField';
+import formField from '../UI/molecules/formField';
 
 const RegisterForm = ({ registerUser, history }) => {
   const renderFields = () => {
@@ -17,7 +17,7 @@ const RegisterForm = ({ registerUser, history }) => {
           name={name}
           type={type}
           key={name}
-          component={RegisterField}
+          component={formField}
         />
       );
     });
@@ -25,7 +25,6 @@ const RegisterForm = ({ registerUser, history }) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
     event.target.password.value === event.target.confirmPassword.value
       ? registerUser(
           {
@@ -56,7 +55,7 @@ const RegisterForm = ({ registerUser, history }) => {
           type="submit"
           className="yellow darken-3 btn-flat right white-text"
         >
-          Sign Up
+          Sign up
           <i className="material-icons right">done</i>
         </button>
       </form>
@@ -64,17 +63,15 @@ const RegisterForm = ({ registerUser, history }) => {
   );
 };
 
-function validate(values) {
+const validate = (values) => {
   const errors = {};
-
   _.each(formFieldTexts, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }
   });
-
   return errors;
-}
+};
 
 export default reduxForm({
   validate,

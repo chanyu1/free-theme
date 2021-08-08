@@ -3,4 +3,4 @@ export const AUTH_USER = 'AUTH_USER';
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-export const SUBMIT_PHOTO = 'SUBMIT_PHOTO';
+export const UPLOAD_POSTCARD = 'UPLOAD_POSTCARD';

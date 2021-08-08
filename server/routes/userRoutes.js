@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
 const { auth } = require('../middlewares/auth');
 
+const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 module.exports = (app) => {
