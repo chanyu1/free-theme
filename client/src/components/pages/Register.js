@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import RegisterForm from '../register/RegisterForm';
+import RegisterForm from '../templates/RegisterForm';
 
 const Register = () => {
   return (

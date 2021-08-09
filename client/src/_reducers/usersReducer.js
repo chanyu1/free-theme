@@ -1,22 +1,11 @@
-import {
-  AUTH_USER,
-  REGISTER_USER,
-  LOGIN_USER,
-  LOGOUT_USER,
-} from '../_actions/types';
+// import { AUTH_USER } from '../_actions/types';
 
-export default (state = {}, action) => {
-  // console.log('action.payload: ', action.payload);
-  switch (action.type) {
-    case AUTH_USER:
-      return { ...state, userData: action.payload };
-    case REGISTER_USER:
-      return { ...state, registerSuccess: action.payload };
-    case LOGIN_USER:
-      return { ...state, loginSuccess: action.payload };
-    case LOGOUT_USER:
-      return { ...state, logoutSuccess: action.payload };
-    default:
-      return state;
-  }
-};
+// export default (state = {}, action) => {
+//   switch (action.type) {
+//     case AUTH_USER:
+//       console.log('AUTH_USER', action.payload);
+//       return { ...state, userData: action.payload };
+//     default:
+//       return state;
+//   }
+// };

@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import PostcardList from '../postcard/PostcardList';
+import PostcardList from '../UI/organisms/PostcardList';
 
 const Dashboard = () => {
   return (
     <Fragment>
-      <PostcardList />
+      <div className="container">
+        <PostcardList />
+      </div>
       <div className="fixed-action-btn">
         <Link
           style={{ position: 'absolute', bottom: '50px', right: '50px' }}

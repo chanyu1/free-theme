@@ -1,9 +1,11 @@
 import React from 'react';
 
+import PostcardList from '../UI/organisms/PostcardList';
+
 const Landing = () => {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>Landing</h1>
+    <div className="container">
+      <PostcardList />
     </div>
   );
 };

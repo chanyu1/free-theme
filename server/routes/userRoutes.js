@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 module.exports = (app) => {
-  app.get('/api/current_user', auth, (req, res) => {
+  app.get('/api/users/current', auth, (req, res) => {
     // res.send(req.user);
     res.send({ isAuth: true });
   });
@@ -24,6 +24,7 @@ module.exports = (app) => {
   });
 
   app.post('/api/users/register', (req, res) => {
+    // console.log(req.body);
     const user = new User(req.body);
 
     user.save((err, userInfo) => {

@@ -5,12 +5,12 @@ import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions';
-import formFieldTexts from './formFieldTexts';
+import RegisterFormTexts from '../UI/atoms/RegisterFormTexts';
 import formField from '../UI/molecules/formField';
 
-const LoginForm = ({ loginUser }) => {
+const RegisterForm = ({ registerUser, history }) => {
   const renderFields = () => {
-    return _.map(formFieldTexts, ({ label, name, type }) => {
+    return _.map(RegisterFormTexts, ({ label, name, type }) => {
       return (
         <Field
           label={label}
@@ -25,10 +25,16 @@ const LoginForm = ({ loginUser }) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    loginUser({
-      email: event.target.email.value,
-      password: event.target.password.value,
-    });
+    event.target.password.value === event.target.confirmPassword.value
+      ? registerUser(
+          {
+            email: event.target.email.value,
+            password: event.target.password.value,
+            name: event.target.name.value,
+          },
+          history,
+        )
+      : alert('Passwords do not match.');
   };
 
   return (
@@ -37,16 +43,19 @@ const LoginForm = ({ loginUser }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '90vh',
+        height: '85vh',
       }}
     >
       <form onSubmit={onSubmitHandler}>
         {renderFields()}
-        <Link to="/signup" className="yellow darken-3 btn-flat white-text">
-          Sign up
+        <Link to="/" className="red btn-flat white-text">
+          Cancel
         </Link>
-        <button type="submit" className="teal btn-flat right white-text">
-          Login
+        <button
+          type="submit"
+          className="yellow darken-3 btn-flat right white-text"
+        >
+          Sign up
           <i className="material-icons right">done</i>
         </button>
       </form>
@@ -55,9 +64,8 @@ const LoginForm = ({ loginUser }) => {
 };
 
 const validate = (values) => {
-  // console.log('validate, ', values);
   const errors = {};
-  _.each(formFieldTexts, ({ name, noValueError }) => {
+  _.each(RegisterFormTexts, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }
@@ -67,5 +75,5 @@ const validate = (values) => {
 
 export default reduxForm({
   validate,
-  form: 'loginForm',
-})(connect(null, actions)(withRouter(LoginForm)));
+  form: 'registerForm',
+})(connect(null, actions)(withRouter(RegisterForm)));

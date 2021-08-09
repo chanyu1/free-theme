@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Postcard');
@@ -31,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   // Express will serve up the index.html file
   // if it doesn't recognize the route
-  const path = require('path');
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });

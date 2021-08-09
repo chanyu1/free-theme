@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const photoSchema = new Schema({
-  photo: String,
+  photoName: String,
+  photoPath: String,
 });
 
 mongoose.exports = photoSchema;

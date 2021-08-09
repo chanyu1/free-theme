@@ -5,12 +5,12 @@ import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions';
-import formFieldTexts from './formFieldTexts';
+import LoginFormTexts from '../UI/atoms/LoginFormTexts';
 import formField from '../UI/molecules/formField';
 
-const RegisterForm = ({ registerUser, history }) => {
+const LoginForm = ({ loginUser }) => {
   const renderFields = () => {
-    return _.map(formFieldTexts, ({ label, name, type }) => {
+    return _.map(LoginFormTexts, ({ label, name, type }) => {
       return (
         <Field
           label={label}
@@ -25,16 +25,10 @@ const RegisterForm = ({ registerUser, history }) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    event.target.password.value === event.target.confirmPassword.value
-      ? registerUser(
-          {
-            email: event.target.email.value,
-            password: event.target.password.value,
-            name: event.target.name.value,
-          },
-          history,
-        )
-      : alert('Passwords do not match.');
+    loginUser({
+      email: event.target.email.value,
+      password: event.target.password.value,
+    });
   };
 
   return (
@@ -43,19 +37,16 @@ const RegisterForm = ({ registerUser, history }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '90vh',
+        height: '85vh',
       }}
     >
       <form onSubmit={onSubmitHandler}>
         {renderFields()}
-        <Link to="/" className="red btn-flat white-text">
-          Cancel
-        </Link>
-        <button
-          type="submit"
-          className="yellow darken-3 btn-flat right white-text"
-        >
+        <Link to="/signup" className="yellow darken-3 btn-flat white-text">
           Sign up
+        </Link>
+        <button type="submit" className="teal btn-flat right white-text">
+          Login
           <i className="material-icons right">done</i>
         </button>
       </form>
@@ -65,7 +56,7 @@ const RegisterForm = ({ registerUser, history }) => {
 
 const validate = (values) => {
   const errors = {};
-  _.each(formFieldTexts, ({ name, noValueError }) => {
+  _.each(LoginFormTexts, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }
@@ -75,5 +66,5 @@ const validate = (values) => {
 
 export default reduxForm({
   validate,
-  form: 'registerForm',
-})(connect(null, actions)(withRouter(RegisterForm)));
+  form: 'loginForm',
+})(connect(null, actions)(withRouter(LoginForm)));

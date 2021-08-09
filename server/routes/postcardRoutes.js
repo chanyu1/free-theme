@@ -1,4 +1,3 @@
-// const _ = require('lodash');
 const path = require('path');
 const multer = require('multer');
 
@@ -16,38 +15,34 @@ module.exports = (app) => {
   });
   const upload = multer({ storage }).array('image', 12);
 
-  app.post('/api/postcard/upload', (req, res) => {
-    upload(req, res, (err) => {
-      // const {} = req.files;
-      // console.log(req.files);
+  app.get('/api/postcards', async (req, res) => {
+    const postcards = await Postcard.find().select();
 
+    res.send(postcards);
+  });
+
+  app.post('/api/postcards/upload', (req, res) => {
+    upload(req, res, (err) => {
       if (err) {
         return res.json({ success: false, err });
       }
-      return res.json({
-        success: true,
-        filePath: req.files[0].path,
-        fileName: req.files[0].filename,
+
+      const postcard = new Postcard({
+        photos: req.files.map((photo) => ({
+          photoName: photo.filename,
+          photoPath: photo.path,
+        })),
+        dateSent: Date.now(),
+      });
+
+      postcard.save((err, postcardInfo) => {
+        if (err) {
+          return res.json({ success: false, err });
+        }
+        return res
+          .status(200)
+          .json({ success: true, message: 'Failed to upload.' });
       });
     });
-    // try {
-    //   res.send(req.file);
-    // } catch (err) {
-    //   res.send(400);
-    // }
   });
-
-  // app.post('/api/photos', async (req, res) => {
-  //   const { image } = req.body;
-
-  // const photo = new Photo({
-  //   image,
-  //   dataSent: Date.now(),
-  // });
-
-  // try {
-  //   await photo.save();
-  // } catch (err) {
-  //   res.status(422).send(err);
-  // }
 };

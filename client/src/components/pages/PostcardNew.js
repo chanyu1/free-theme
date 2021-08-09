@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import PostcardForm from '../postcard/PostcardForm';
+import PostcardForm from '../templates/PostcardForm';
 
 const PostcardNew = () => {
   return (

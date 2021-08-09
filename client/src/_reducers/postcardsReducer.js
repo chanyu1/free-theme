@@ -1,9 +1,10 @@
-import { UPLOAD_POSTCARD } from '../_actions/types';
+import { FETCH_POSTCARDS } from '../_actions/types';
 
-export default (state = {}, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case UPLOAD_POSTCARD:
-      return { ...state, data: action.payload };
+    case FETCH_POSTCARDS:
+      console.log('FETCH_POSTCARDS', action.payload);
+      return action.payload;
     default:
       return state;
   }
