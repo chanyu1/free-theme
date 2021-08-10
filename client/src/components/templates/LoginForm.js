@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
-import * as actions from '../../_actions';
+import * as actions from '../../_actions/userAction';
 import LoginFormTexts from '../UI/atoms/LoginFormTexts';
 import formField from '../UI/molecules/formField';
 

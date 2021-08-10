@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import * as actions from './_actions';
 import Auth from './hoc/auth';
 import Header from './components/UI/organisms/Header';
 import Landing from './components/pages/Landing';
@@ -12,10 +10,6 @@ import Dashboard from './components/pages/Dashboard';
 import PostcardNew from './components/pages/PostcardNew';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -32,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, actions)(App);
+export default App;

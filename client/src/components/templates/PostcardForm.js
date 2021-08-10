@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
-import * as actions from '../../_actions';
+import * as actions from '../../_actions/postcardAction';
 
 const PostcardForm = ({ uploadPostcard, history }) => {
   const [photos, setPhotos] = useState(null);

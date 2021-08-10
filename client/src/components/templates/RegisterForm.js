@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
-import * as actions from '../../_actions';
+import * as actions from '../../_actions/userAction';
 import RegisterFormTexts from '../UI/atoms/RegisterFormTexts';
 import formField from '../UI/molecules/formField';
 
@@ -25,6 +25,7 @@ const RegisterForm = ({ registerUser, history }) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+
     event.target.password.value === event.target.confirmPassword.value
       ? registerUser(
           {

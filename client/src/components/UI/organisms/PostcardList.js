@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../../_actions';
+import * as actions from '../../../_actions/postcardAction';
 
 const PostcardList = ({ postcards, fetchPostcards }) => {
   useEffect(() => {

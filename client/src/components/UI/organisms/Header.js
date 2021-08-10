@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import * as actions from '../../../_actions';
+import * as actions from '../../../_actions/userAction';
 
 const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {

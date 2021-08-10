@@ -1,18 +1,6 @@
 import axios from 'axios';
 
-import { FETCH_USER, FETCH_POSTCARDS } from './types';
-
-export const fetchUser = () => async (dispatch) => {
-  const res = await axios.get('/api/users/current');
-
-  dispatch({ type: FETCH_USER, payload: res.data });
-};
-
-export const fetchPostcards = () => async (dispatch) => {
-  const res = await axios.get('/api/postcards');
-
-  dispatch({ type: FETCH_POSTCARDS, payload: res.data });
-};
+import { AUTH_USER, REGISTER_USER, LOGIN_USER, LOGOUT_USER } from './types';
 
 export const authUser = (history, option, adminRoute) => async (dispatch) => {
   const res = await axios.get('/api/users/auth');
@@ -24,7 +12,7 @@ export const authUser = (history, option, adminRoute) => async (dispatch) => {
   } else if (res.data.isAuth && !option) {
     history.push('/postcards');
   }
-  // dispatch({ type: AUTH_USER, payload: res.data });
+  dispatch({ type: AUTH_USER, payload: res.data });
 };
 
 export const registerUser = (dataToSubmit, history) => async (dispatch) => {
@@ -32,7 +20,7 @@ export const registerUser = (dataToSubmit, history) => async (dispatch) => {
 
   if (res.data.registerSuccess) {
     history.push('/login');
-    // dispatch({ type: REGISTER_USER, payload: res.data });
+    dispatch({ type: REGISTER_USER, payload: res.data });
   } else {
     alert(res.data.message);
   }
@@ -43,7 +31,7 @@ export const loginUser = (dataToSubmit) => async (dispatch) => {
 
   if (res.data.loginSuccess) {
     window.location.replace('/postcards');
-    // dispatch({ type: LOGIN_USER, payload: res.data });
+    dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
     alert(res.data.message);
   }
@@ -54,17 +42,8 @@ export const logoutUser = () => async (dispatch) => {
 
   if (res.data.logoutSuccess) {
     window.location.replace('/');
-    // dispatch({ type: LOGOUT_USER, payload: res.data });
+    dispatch({ type: LOGOUT_USER, payload: res.data });
   } else {
     alert(res.data.message);
   }
-};
-
-export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {
-  const res = await axios.post('/api/postcards/upload', dataToSubmit, {
-    header: { 'content-type': 'multipart/form-data' },
-  });
-
-  history.push('/postcards');
-  // dispatch({ type: UPLOAD_POSTCARD, payload: res.data });
 };
