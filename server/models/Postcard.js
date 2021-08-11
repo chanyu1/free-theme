@@ -5,7 +5,9 @@ const { Schema } = mongoose;
 
 const postcardSchema = new Schema({
   photos: [PhotoSchema],
-  // _user: { type: Schema.Types.ObjectId, ref: 'User' },
+  theme: String,
+  description: String,
+  ownUsername: String,
   dateSent: Date,
 });
 

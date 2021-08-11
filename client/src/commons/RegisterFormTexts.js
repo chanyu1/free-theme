@@ -7,7 +7,7 @@ export default [
   },
   {
     label: 'Name',
-    name: 'name',
+    name: 'username',
     type: 'text',
     noValueError: 'Provide a Name',
   },

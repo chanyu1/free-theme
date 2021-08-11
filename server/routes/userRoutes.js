@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
 module.exports = (app) => {
-  app.get('/api/users/current', auth, (req, res) => {
-    // res.send(req.user);
-    res.send({ isAuth: true });
-  });
+  // app.get('/api/users/current', auth, (req, res) => {
+  // res.send(req.user);
+  // res.send({ isAuth: true });
+  // });
 
   app.get('/api/users/auth', auth, (req, res) => {
     // 여기까지 미들웨어(auth)를 통과해 왔다는 얘기는 Authentication이 True라는 뜻
@@ -17,14 +17,13 @@ module.exports = (app) => {
       isAdmin: req.user.role === 0 ? false : true,
       isAuth: true,
       email: req.user.email,
-      name: req.user.name,
+      username: req.user.username,
       image: req.user.image,
       role: req.user.role,
     });
   });
 
   app.post('/api/users/register', (req, res) => {
-    // console.log(req.body);
     const user = new User(req.body);
 
     user.save((err, userInfo) => {

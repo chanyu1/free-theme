@@ -8,7 +8,7 @@ export default [
   {
     label: 'Description',
     name: 'description',
-    type: 'text',
+    type: 'textarea',
     noValueError: 'Provide a Password',
   },
 ];

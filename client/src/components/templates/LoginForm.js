@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions/userAction';
-import LoginFormTexts from '../UI/atoms/LoginFormTexts';
+import LoginFormTexts from '../../commons/LoginFormTexts';
 import formField from '../UI/molecules/formField';
 
 const LoginForm = ({ loginUser }) => {
@@ -32,15 +32,8 @@ const LoginForm = ({ loginUser }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '85vh',
-      }}
-    >
-      <form onSubmit={onSubmitHandler}>
+    <div className="row" style={{ margin: '25vh 0' }}>
+      <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderFields()}
         <Link to="/signup" className="yellow darken-3 btn-flat white-text">
           Sign up

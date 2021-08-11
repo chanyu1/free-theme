@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
 import * as actions from '../../_actions/userAction';
-import RegisterFormTexts from '../UI/atoms/RegisterFormTexts';
+import RegisterFormTexts from '../../commons/RegisterFormTexts';
 import formField from '../UI/molecules/formField';
 
 const RegisterForm = ({ registerUser, history }) => {
@@ -31,7 +31,7 @@ const RegisterForm = ({ registerUser, history }) => {
           {
             email: event.target.email.value,
             password: event.target.password.value,
-            name: event.target.name.value,
+            username: event.target.username.value,
           },
           history,
         )
@@ -39,15 +39,8 @@ const RegisterForm = ({ registerUser, history }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '85vh',
-      }}
-    >
-      <form onSubmit={onSubmitHandler}>
+    <div className="row" style={{ margin: '10vh 0' }}>
+      <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderFields()}
         <Link to="/" className="red btn-flat white-text">
           Cancel
