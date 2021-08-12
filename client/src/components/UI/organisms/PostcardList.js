@@ -11,17 +11,18 @@ const PostcardList = ({ postcards, fetchPostcards }) => {
   const renderPostcards = () => {
     return postcards.reverse().map((postcard) => {
       return (
-        <div className="card darken-1" key={postcard._id}>
-          {/* <div className="card-content">
-            <span className="card-title">
-              <img src={postcard.photos[0].photoPath} />
-            </span>
-            <p>{postcard.photos.photoPath}</p>
-            <p className="right">
-              Sent On: {new Date(postcard.dateSent).toLocaleDateString()}
-            </p>
+        <div className="row" key={postcard._id}>
+          <div className="col s3 m3">
+            <div className="card">
+              <div className="card-image">
+                <img src={postcard.photos[0].photoName} />
+                <span className="card-title">{postcard.theme}</span>
+              </div>
+              <div className="card-content">
+                <p>{postcard.description}</p>
+              </div>
+            </div>
           </div>
-          <div className="card-action"></div> */}
         </div>
       );
     });

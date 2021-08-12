@@ -11,30 +11,24 @@ module.exports = (app) => {
     res.send(postcards);
   });
 
-  app.post(
-    '/api/postcards/upload',
-    auth,
-    upload.array('image', 12),
-    (req, res) => {
-      const postcard = new Postcard({
-        photos: req.files.map((photo) => ({
-          photoName: photo.filename,
-          photoPath: photo.path,
-        })),
-        theme: req.body.theme,
-        description: req.body.description,
-        ownUsername: req.user.username,
-        dateSent: Date.now(),
-      });
+  app.post('/api/postcards/upload', auth, upload, (req, res) => {
+    const postcard = new Postcard({
+      photos: req.files.map((photo) => ({
+        photoName: `./uploads/${photo.filename}`,
+      })),
+      theme: req.body.theme,
+      description: req.body.description,
+      ownUsername: req.user.username,
+      dateSent: Date.now(),
+    });
 
-      postcard.save((err, postcardInfo) => {
-        if (err) {
-          return res.json({ success: false, err });
-        }
-        return res
-          .status(200)
-          .json({ success: true, message: 'Failed to upload.' });
-      });
-    },
-  );
+    postcard.save((err, postcardInfo) => {
+      if (err) {
+        return res.json({ success: false, err });
+      }
+      return res
+        .status(200)
+        .json({ success: true, message: 'Failed to upload.' });
+    });
+  });
 };
