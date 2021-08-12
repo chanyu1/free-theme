@@ -14,8 +14,7 @@ module.exports = (app) => {
   app.post('/api/postcards/upload', auth, upload, (req, res) => {
     const postcard = new Postcard({
       photos: req.files.map((photo) => ({
-        // photoName: `./uploads/${photo.filename}`,
-        photoName: photo.filename,
+        photoName: `./uploads/${photo.filename}`,
       })),
       theme: req.body.theme,
       description: req.body.description,
