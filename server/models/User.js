@@ -7,7 +7,7 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   email: { type: String, trim: true, unique: 1 },
-  username: { type: String, maxlength: 30 },
+  name: { type: String, maxlength: 30 },
   password: { type: String, minlength: 5 },
   image: { type: String },
   role: { type: Number, default: 0 },

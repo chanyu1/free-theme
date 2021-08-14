@@ -18,7 +18,8 @@ module.exports = (app) => {
       })),
       theme: req.body.theme,
       description: req.body.description,
-      ownUsername: req.user.username,
+      owner: req.user.name,
+      ownerEmail: req.user.email,
       dateSent: Date.now(),
     });
 

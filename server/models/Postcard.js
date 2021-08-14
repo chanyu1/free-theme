@@ -7,7 +7,8 @@ const postcardSchema = new Schema({
   photos: [PhotoSchema],
   theme: String,
   description: String,
-  ownUsername: String,
+  owner: String,
+  ownerEmail: String,
   dateSent: Date,
 });
 

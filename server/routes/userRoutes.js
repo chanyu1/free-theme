@@ -17,7 +17,7 @@ module.exports = (app) => {
       isAdmin: req.user.role === 0 ? false : true,
       isAuth: true,
       email: req.user.email,
-      username: req.user.username,
+      name: req.user.name,
       image: req.user.image,
       role: req.user.role,
     });
