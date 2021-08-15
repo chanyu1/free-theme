@@ -2,7 +2,8 @@ import _ from 'lodash';
 import React from 'react';
 import { Field } from 'redux-form';
 
-import formInputField from './formInputField';
+// import classes from './style.module.css';
+import InputField from '../../UI/InputField';
 
 export default (formData) => {
   return _.map(formData, ({ label, name, type }) => {
@@ -12,7 +13,7 @@ export default (formData) => {
         name={name}
         type={type}
         key={name}
-        component={formInputField}
+        component={InputField}
       />
     );
   });

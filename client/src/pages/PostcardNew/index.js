@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
-import PostcardForm from '../../components/Forms/PostcardForm';
+// import classes from './style.module.css';
+import PostcardForm from '../../components/forms/PostcardForm';
 
 const PostcardNew = () => {
   return (

@@ -1,43 +1,51 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
+import classes from './style.module.css';
 import * as actions from '../../../_actions/userAction';
-import inputData from './inputData';
-import renderInputFields from '../../UI/renderInputFields';
+import registerFieldData from '../../../commons/registerFieldData';
+import renderField from '../renderField';
+import SubmitBtn from '../../UI/SubmitBtn';
+import LinkBtn from '../../UI/LinkBtn';
 
 const RegisterForm = ({ registerUser, history }) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    event.target.password.value === event.target.confirmPassword.value
-      ? registerUser(
-          {
-            email: event.target.email.value,
-            password: event.target.password.value,
-            name: event.target.name.value,
-          },
-          history,
-        )
-      : alert('Passwords do not match.');
+    if (
+      !event.target.email.value ||
+      event.target.name.value ||
+      !event.target.password.value ||
+      event.target.confirmPassword.value
+    ) {
+      return alert('Provide a whole field.');
+    } else if (
+      event.target.password.value !== event.target.confirmPassword.value
+    ) {
+      return alert('Passwords do not match.');
+    }
+
+    registerUser(
+      {
+        email: event.target.email.value,
+        password: event.target.password.value,
+        name: event.target.name.value,
+      },
+      history,
+    );
   };
 
   return (
-    <div className="row" style={{ margin: '10vh 0' }}>
+    <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
-        {renderInputFields(inputData)}
-        <Link to="/" className="red btn-flat white-text">
+        {renderField(registerFieldData)}
+        <LinkBtn location="/" color="red">
           Cancel
-        </Link>
-        <button
-          type="submit"
-          className="yellow darken-3 btn-flat right white-text"
-        >
-          Sign up
-          <i className="material-icons right">done</i>
-        </button>
+        </LinkBtn>
+        <SubmitBtn>Sign up</SubmitBtn>
       </form>
     </div>
   );
@@ -45,7 +53,7 @@ const RegisterForm = ({ registerUser, history }) => {
 
 const validate = (values) => {
   const errors = {};
-  _.each(inputData, ({ name, noValueError }) => {
+  _.each(registerFieldData, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }

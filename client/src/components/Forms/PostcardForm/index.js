@@ -1,22 +1,36 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
+import classes from './style.module.css';
 import * as actions from '../../../_actions/postcardAction';
-import inputData from './inputData';
-import renderInputFields from '../../UI/renderInputFields';
+import postcardFieldData from '../../../commons/postcardFieldData';
+import renderField from '../renderField';
+import SubmitBtn from '../../UI/SubmitBtn';
+import LinkBtn from '../../UI/LinkBtn';
 
 const PostcardForm = ({ uploadPostcard, history }) => {
   const [photos, setPhotos] = useState(null);
+  const [photoNumber, setPhotoNumber] = useState('');
 
   const fileSelectHandler = (event) => {
-    setPhotos(event.target.files);
+    if (event.target.files.length > 0) {
+      setPhotoNumber(event.target.files.length);
+    }
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+
+    if (
+      !photos ||
+      !event.target.theme.value ||
+      !event.target.description.value
+    ) {
+      return alert('Provide a whole field.');
+    }
 
     const formData = new FormData();
     _.each(photos, (photo) => {
@@ -27,10 +41,11 @@ const PostcardForm = ({ uploadPostcard, history }) => {
 
     uploadPostcard(formData, history);
     setPhotos(null);
+    setPhotoNumber('');
   };
 
   return (
-    <div className="row" style={{ margin: '15vh 0' }}>
+    <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         <div className="file-field input-field">
           <div className="btn">
@@ -45,23 +60,19 @@ const PostcardForm = ({ uploadPostcard, history }) => {
           </div>
           <div className="file-path-wrapper">
             <input
-              className="file-path validate"
+              className="file-path validate grey-text text-darken-1"
               type="text"
-              placeholder="Upload one or more photos"
+              placeholder=" Upload one or more photos"
+              value={photoNumber && ` You added ${photoNumber} photos`}
+              readOnly
             />
           </div>
         </div>
-        {renderInputFields(inputData)}
-        <Link to="/postcards" className="red white-text btn-flat">
+        {renderField(postcardFieldData)}
+        <LinkBtn location="/postcards" color="red">
           Cancel
-        </Link>
-        <button
-          type="submit"
-          className="yellow darken-3 btn-flat right white-text"
-        >
-          Submit
-          <i className="material-icons right">done</i>
-        </button>
+        </LinkBtn>
+        <SubmitBtn>Submit</SubmitBtn>
       </form>
     </div>
   );
@@ -69,7 +80,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
 
 const validate = (values) => {
   const errors = {};
-  _.each(inputData, ({ name, noValueError }) => {
+  _.each(postcardFieldData, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }

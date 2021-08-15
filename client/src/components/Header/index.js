@@ -4,13 +4,14 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
+import classes from './style.module.css';
 import * as actions from '../../_actions/userAction';
 
 const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {
     return [
       <li key="logout">
-        <a onClick={() => logoutUser()}>Logout</a>
+        <a onClick={() => logoutUser()}>Log out</a>
       </li>,
       <li key="github">
         <a href="https://github.com/chanyu1" target="_blank" rel="noreferrer">
@@ -23,7 +24,7 @@ const Header = ({ auth, logoutUser }) => {
   const logoutContent = () => {
     return [
       <li key="login">
-        <Link to="/login">Login</Link>
+        <Link to="/login">Log in</Link>
       </li>,
       <li key="signup">
         <Link to="/signup">Sign up</Link>
@@ -33,14 +34,10 @@ const Header = ({ auth, logoutUser }) => {
 
   return (
     <nav>
-      <div
-        style={{ fontFamily: 'Lexend, sans-serif', margin: '0 16px' }}
-        className="nav-wrapper"
-      >
+      <div className={`nav-wrapper ${classes.navWrapper}`}>
         <Link
-          style={{ fontSize: '36px' }}
           to={auth && auth.isAuth ? '/postcards' : '/'}
-          className="left brand-logo"
+          className={`left brand-logo ${classes.logo}`}
         >
           KOU
         </Link>

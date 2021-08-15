@@ -1,0 +1,20 @@
+.modal {
+  position: fixed;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.content {
+  padding: 2rem 0;
+}
+
+.photo {
+  /* align-items: center; */
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}

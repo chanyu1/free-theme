@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
-import PostcardList from '../../components/Lists/PostcardList';
+// import classes from './style.module.css';
+import PostcardList from '../../components/PostcardList';
 
 const Landing = () => {
   return (

@@ -5,7 +5,7 @@ import { FETCH_POSTCARDS, UPLOAD_POSTCARD } from './types';
 export const fetchPostcards = () => async (dispatch) => {
   const res = await axios.get('/api/postcards');
 
-  dispatch({ type: FETCH_POSTCARDS, payload: res.data });
+  dispatch({ type: FETCH_POSTCARDS, payload: res.data.reverse() });
 };
 
 export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {

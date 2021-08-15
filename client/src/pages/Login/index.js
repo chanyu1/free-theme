@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
-import LoginForm from '../../components/Forms/LoginForm';
+// import classes from './style.module.css';
+import LoginForm from '../../components/forms/LoginForm';
 
 const Login = () => {
   return (
