@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './style.module.css';
 import * as actions from '../../_actions/postcardAction';
 import PostcardModal from '../UI/Modal/PostcardModal';
 
-const PostcardList = ({ postcards, fetchPostcards }) => {
+const PostcardList = ({ postcards, fetchPostcards, hideAddBtn }) => {
   const [photos, setPhotos] = useState(null);
 
   useEffect(() => {
     fetchPostcards();
   }, []);
 
+  const openPostcardHandler = (photos) => {
+    setPhotos(photos);
+    hideAddBtn(true);
+  };
+
+  const closePostcardHandler = () => {
+    setPhotos(null);
+    hideAddBtn(false);
+  };
+
   const renderPostcards = () => {
     return postcards.map((postcard) => {
       return (
         <div
-          onClick={() => setPhotos(postcard.photos)}
+          onClick={() => openPostcardHandler(postcard.photos)}
           className={`card ${classes.postcard}`}
           key={postcard._id}
         >
           <div className="card-image">
             <img src={postcard.photos[0].photoName} />
-            <span className="card-title">{postcard.theme}</span>
           </div>
-          <div className="card-content">
+          <div className={`card-content ${classes.theme}`}>
+            <p>{postcard.theme}</p>
+          </div>
+          <div className={`card-content ${classes.description}`}>
             <p>{postcard.description}</p>
           </div>
-          <div className="card-content grey-text text-darken-1">
+          <div
+            className={`card-content grey-text text-darken-1 ${classes.owner}`}
+          >
             <p>{postcard.owner}</p>
             <p>{postcard.ownerEmail}</p>
           </div>
@@ -37,12 +51,17 @@ const PostcardList = ({ postcards, fetchPostcards }) => {
   };
 
   return (
-    <div>
+    <Fragment>
       {photos && (
-        <PostcardModal photoList={photos} onConfirm={() => setPhotos(null)} />
+        <PostcardModal
+          photoList={photos}
+          onConfirm={() => closePostcardHandler()}
+        />
       )}
-      <div className="container">{renderPostcards()}</div>
-    </div>
+      <div className={`container ${classes.postcardsWrapper}`}>
+        {renderPostcards()}
+      </div>
+    </Fragment>
   );
 };
 

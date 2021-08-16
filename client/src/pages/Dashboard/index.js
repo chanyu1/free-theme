@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 
 // import classes from './style.module.css';
 import PostcardList from '../../components/PostcardList';
-import FixedBtn from '../../components/UI/FixedBtn';
+import AddBtn from '../../components/UI/AddBtn';
 
 const Dashboard = () => {
   return (
     <Fragment>
       <PostcardList />
-      <FixedBtn location="/postcards/new" />
+      <AddBtn location="/postcards/new" icon="add" />
     </Fragment>
   );
 };

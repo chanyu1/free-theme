@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FETCH_POSTCARDS, UPLOAD_POSTCARD } from './types';
+import { FETCH_POSTCARDS, UPLOAD_POSTCARD, HIDE_ADD_BTN } from './types';
 
 export const fetchPostcards = () => async (dispatch) => {
   const res = await axios.get('/api/postcards');
@@ -15,4 +15,8 @@ export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {
 
   history.push('/postcards');
   dispatch({ type: UPLOAD_POSTCARD, payload: res.data });
+};
+
+export const hideAddBtn = (changeAction) => (dispatch) => {
+  dispatch({ type: HIDE_ADD_BTN, payload: changeAction });
 };

@@ -45,7 +45,7 @@ const RegisterForm = ({ registerUser, history }) => {
         <LinkBtn location="/" color="red">
           Cancel
         </LinkBtn>
-        <SubmitBtn>Sign up</SubmitBtn>
+        <SubmitBtn icon="done">Sign up</SubmitBtn>
       </form>
     </div>
   );

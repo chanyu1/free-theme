@@ -5,38 +5,20 @@ import Card from '../Card';
 import CloseBtn from '../CloseBtn';
 
 const ModalOverlay = (props) => {
+  const renderPhoto = () => {
+    return props.photoList.map((photo) => {
+      return (
+        <div className={classes.photo} key={photo.photoName}>
+          <img src={photo.photoName} />
+        </div>
+      );
+    });
+  };
+
   return (
     <Card className={classes.modal}>
-      <CloseBtn onClick={props.onConfirm}>close</CloseBtn>
-      <div className={classes.content}>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        {/* <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div>
-        <div className={classes.photo}>
-          <img src={props.photoList[0].photoName} />
-        </div> */}
-      </div>
+      <CloseBtn onClick={props.onConfirm}>Close</CloseBtn>
+      <div className={classes.content}>{renderPhoto()}</div>
     </Card>
   );
 };

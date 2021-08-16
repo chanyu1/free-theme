@@ -32,7 +32,7 @@ const LoginForm = ({ loginUser }) => {
         <LinkBtn location="/signup" color="yellow darken-3">
           Sign up
         </LinkBtn>
-        <SubmitBtn>Log in</SubmitBtn>
+        <SubmitBtn icon="done">Log in</SubmitBtn>
       </form>
     </div>
   );

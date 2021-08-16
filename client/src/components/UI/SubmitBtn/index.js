@@ -6,7 +6,7 @@ const SubmitBtn = (props) => {
   return (
     <button type="submit" className="teal btn-flat right white-text">
       {props.children}
-      <i className="material-icons right">done</i>
+      <i className="material-icons right">{props.icon}</i>
     </button>
   );
 };

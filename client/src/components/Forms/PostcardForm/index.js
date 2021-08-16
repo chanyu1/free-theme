@@ -18,6 +18,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
   const fileSelectHandler = (event) => {
     if (event.target.files.length > 0) {
       setPhotoNumber(event.target.files.length);
+      setPhotos(event.target.files);
     }
   };
 
@@ -25,7 +26,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
     event.preventDefault();
 
     if (
-      !photos ||
+      !photoNumber > 0 ||
       !event.target.theme.value ||
       !event.target.description.value
     ) {
@@ -48,7 +49,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
     <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         <div className="file-field input-field">
-          <div className="btn">
+          <div className="btn yellow darken-3">
             <span>File</span>
             <input
               name="photos"
@@ -72,7 +73,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
         <LinkBtn location="/postcards" color="red">
           Cancel
         </LinkBtn>
-        <SubmitBtn>Submit</SubmitBtn>
+        <SubmitBtn icon="done">Submit</SubmitBtn>
       </form>
     </div>
   );

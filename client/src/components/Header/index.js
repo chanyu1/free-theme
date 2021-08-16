@@ -33,11 +33,11 @@ const Header = ({ auth, logoutUser }) => {
   };
 
   return (
-    <nav>
+    <nav className="blue-grey">
       <div className={`nav-wrapper ${classes.navWrapper}`}>
         <Link
           to={auth && auth.isAuth ? '/postcards' : '/'}
-          className={`left brand-logo ${classes.logo}`}
+          className="left brand-logo"
         >
           KOU
         </Link>
