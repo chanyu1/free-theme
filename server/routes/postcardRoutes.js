@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get('/api/postcards', async (req, res) => {
     const postcards = await Postcard.find().select();
 
-    res.send(postcards);
+    return res.send(postcards);
   });
 
   app.post('/api/postcards/upload', auth, upload, (req, res) => {
@@ -24,12 +24,9 @@ module.exports = (app) => {
     });
 
     postcard.save((err, postcardInfo) => {
-      if (err) {
-        return res.json({ success: false, err });
-      }
-      return res
-        .status(200)
-        .json({ success: true, message: 'Failed to upload.' });
+      if (err) return res.send({ success: false, err });
+
+      return res.status(200).send({ success: true });
     });
   });
 };

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
 import classes from './style.module.css';
@@ -9,7 +9,6 @@ import * as actions from '../../../_actions/postcardAction';
 import postcardFieldData from '../../../commons/postcardFieldData';
 import renderField from '../renderField';
 import SubmitBtn from '../../UI/SubmitBtn';
-import LinkBtn from '../../UI/LinkBtn';
 
 const PostcardForm = ({ uploadPostcard, history }) => {
   const [photos, setPhotos] = useState(null);
@@ -26,7 +25,7 @@ const PostcardForm = ({ uploadPostcard, history }) => {
     event.preventDefault();
 
     if (
-      !photoNumber > 0 ||
+      !photos ||
       !event.target.theme.value ||
       !event.target.description.value
     ) {
@@ -70,9 +69,9 @@ const PostcardForm = ({ uploadPostcard, history }) => {
           </div>
         </div>
         {renderField(postcardFieldData)}
-        <LinkBtn location="/postcards" color="red">
+        <Link to="/postcards" className="white-text btn-flat red">
           Cancel
-        </LinkBtn>
+        </Link>
         <SubmitBtn icon="done">Submit</SubmitBtn>
       </form>
     </div>

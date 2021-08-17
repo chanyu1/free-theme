@@ -17,19 +17,16 @@ const userSchema = new Schema({
 
 // 저장하기 전 실행
 userSchema.pre('save', function (next) {
-  // userSchema를 가리킴
   var user = this;
   // 비밀번호가 변환될 때만 실행
   if (user.isModified('password')) {
     // 비밀번호 암호화
     bcrypt.genSalt(saltRounds, function (err, salt) {
-      if (err) {
-        return next(err);
-      }
+      if (err) return next(err);
+
       bcrypt.hash(user.password, salt, function (err, hash) {
-        if (err) {
-          return next(err);
-        }
+        if (err) return next(err);
+
         user.password = hash;
         next();
       });
@@ -41,9 +38,8 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.comparePassword = function (plainPassword, callback) {
   bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
-    if (err) {
-      return callback(err);
-    }
+    if (err) return callback(err);
+
     callback(null, isMatch);
   });
 };
@@ -55,22 +51,21 @@ userSchema.methods.generateToken = function (callback) {
 
   user.token = token;
   user.save(function (err, user) {
-    if (err) {
-      return callback(err);
-    }
+    if (err) return callback(err);
+
     callback(null, user);
   });
 };
 
 userSchema.statics.findByToken = function (token, callback) {
   var user = this;
-  // 토큰을 decode
+  // Decode token
   jwt.verify(token, 'secretToken', function (err, decoded) {
+    if (err) return callback(err);
     // 유저 아이디를 이용해서 유저를 찾은 후, token이 일치하는지 확인
     user.findOne({ _id: decoded, token: token }, function (err, user) {
-      if (err) {
-        return callback(err);
-      }
+      if (err) return callback(err);
+
       callback(null, user);
     });
   });

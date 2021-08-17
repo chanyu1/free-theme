@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
 import classes from './style.module.css';
@@ -9,7 +9,6 @@ import * as actions from '../../../_actions/userAction';
 import loginFieldData from '../../../commons/loginFieldData';
 import renderField from '../renderField';
 import SubmitBtn from '../../UI/SubmitBtn';
-import LinkBtn from '../../UI/LinkBtn';
 
 const LoginForm = ({ loginUser }) => {
   const onSubmitHandler = (event) => {
@@ -29,9 +28,9 @@ const LoginForm = ({ loginUser }) => {
     <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderField(loginFieldData)}
-        <LinkBtn location="/signup" color="yellow darken-3">
+        <Link to="/signup" className="white-text btn-flat yellow darken-3">
           Sign up
-        </LinkBtn>
+        </Link>
         <SubmitBtn icon="done">Log in</SubmitBtn>
       </form>
     </div>

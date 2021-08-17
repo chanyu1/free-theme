@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
 import classes from './style.module.css';
@@ -9,7 +9,6 @@ import * as actions from '../../../_actions/userAction';
 import registerFieldData from '../../../commons/registerFieldData';
 import renderField from '../renderField';
 import SubmitBtn from '../../UI/SubmitBtn';
-import LinkBtn from '../../UI/LinkBtn';
 
 const RegisterForm = ({ registerUser, history }) => {
   const onSubmitHandler = (event) => {
@@ -17,9 +16,9 @@ const RegisterForm = ({ registerUser, history }) => {
 
     if (
       !event.target.email.value ||
-      event.target.name.value ||
+      !event.target.name.value ||
       !event.target.password.value ||
-      event.target.confirmPassword.value
+      !event.target.confirmPassword.value
     ) {
       return alert('Provide a whole field.');
     } else if (
@@ -42,9 +41,9 @@ const RegisterForm = ({ registerUser, history }) => {
     <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderField(registerFieldData)}
-        <LinkBtn location="/" color="red">
+        <Link to="/" className="white-text btn-flat red">
           Cancel
-        </LinkBtn>
+        </Link>
         <SubmitBtn icon="done">Sign up</SubmitBtn>
       </form>
     </div>

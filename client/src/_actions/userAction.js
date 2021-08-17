@@ -18,7 +18,7 @@ export const authUser = (history, option, adminRoute) => async (dispatch) => {
 export const registerUser = (dataToSubmit, history) => async (dispatch) => {
   const res = await axios.post('/api/users/register', dataToSubmit);
 
-  if (res.data.registerSuccess) {
+  if (res.data.success) {
     history.push('/login');
     dispatch({ type: REGISTER_USER, payload: res.data });
   } else {
@@ -29,7 +29,7 @@ export const registerUser = (dataToSubmit, history) => async (dispatch) => {
 export const loginUser = (dataToSubmit) => async (dispatch) => {
   const res = await axios.post('/api/users/login', dataToSubmit);
 
-  if (res.data.loginSuccess) {
+  if (res.data.success) {
     window.location.replace('/postcards');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
@@ -40,7 +40,7 @@ export const loginUser = (dataToSubmit) => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   const res = await axios.get('/api/users/logout');
 
-  if (res.data.logoutSuccess) {
+  if (res.data.success) {
     window.location.replace('/');
     dispatch({ type: LOGOUT_USER, payload: res.data });
   } else {
