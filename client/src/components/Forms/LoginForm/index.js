@@ -31,7 +31,9 @@ const LoginForm = ({ loginUser }) => {
         <Link to="/signup" className="white-text btn-flat yellow darken-3">
           Sign up
         </Link>
-        <SubmitBtn icon="done">Log in</SubmitBtn>
+        <SubmitBtn btnColor="teal" icon="done">
+          Log in
+        </SubmitBtn>
       </form>
     </div>
   );

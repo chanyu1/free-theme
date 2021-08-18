@@ -11,8 +11,8 @@ import renderField from '../renderField';
 import SubmitBtn from '../../UI/SubmitBtn';
 
 const PostcardForm = ({ uploadPostcard, history }) => {
-  const [photos, setPhotos] = useState(null);
   const [photoNumber, setPhotoNumber] = useState('');
+  const [photos, setPhotos] = useState(null);
 
   const fileSelectHandler = (event) => {
     if (event.target.files.length > 0) {
@@ -40,15 +40,15 @@ const PostcardForm = ({ uploadPostcard, history }) => {
     formData.append('description', event.target.description.value);
 
     uploadPostcard(formData, history);
-    setPhotos(null);
     setPhotoNumber('');
+    setPhotos(null);
   };
 
   return (
     <div className={`row ${classes.formWrapper}`}>
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         <div className="file-field input-field">
-          <div className="btn yellow darken-3">
+          <div className="btn blue">
             <span>File</span>
             <input
               name="photos"
@@ -72,7 +72,9 @@ const PostcardForm = ({ uploadPostcard, history }) => {
         <Link to="/postcards" className="white-text btn-flat red">
           Cancel
         </Link>
-        <SubmitBtn icon="done">Submit</SubmitBtn>
+        <SubmitBtn btnColor="yellow darken-3" icon="done">
+          Upload
+        </SubmitBtn>
       </form>
     </div>
   );

@@ -58,9 +58,7 @@ const PostcardList = ({ postcards, fetchPostcards, hideAddBtn }) => {
           onConfirm={() => closePostcardHandler()}
         />
       )}
-      <div className={`container ${classes.postcardsWrapper}`}>
-        {renderPostcards()}
-      </div>
+      <div className={classes.postcardsWrapper}>{renderPostcards()}</div>
     </Fragment>
   );
 };

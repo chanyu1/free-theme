@@ -44,7 +44,9 @@ const RegisterForm = ({ registerUser, history }) => {
         <Link to="/" className="white-text btn-flat red">
           Cancel
         </Link>
-        <SubmitBtn icon="done">Sign up</SubmitBtn>
+        <SubmitBtn btnColor="yellow darken-3" icon="done">
+          Sign up
+        </SubmitBtn>
       </form>
     </div>
   );
