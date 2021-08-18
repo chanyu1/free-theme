@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.get('/api/users/auth', auth, (req, res) => {
     return res.status(200).send({
       _id: req.user._id,
-      // 0은 일반유저, 그 외는 관리자
+      // 0 is general user, otherwise admin user
       isAdmin: req.user.role === 0 ? false : true,
       isAuth: true,
       email: req.user.email,
@@ -19,7 +19,7 @@ module.exports = (app) => {
 
   app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
-
+    // Save request user information
     user.save((err, user) => {
       if (err) return res.send({ success: false, err });
 
@@ -28,7 +28,7 @@ module.exports = (app) => {
   });
 
   app.post('/api/users/login', (req, res) => {
-    // 요청된 이메일을 DB에서 찾는다
+    // Find request email in database
     User.findOne({ email: req.body.email }, (err, user) => {
       if (err) return res.send({ success: false, err });
       if (!user) {
@@ -37,7 +37,7 @@ module.exports = (app) => {
           message: 'No such user exists.',
         });
       }
-      // 요청된 이메일이 DB에 있다면 비밀번호 확인
+      // Confirm password if there is a request email in the database
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (err) return res.send({ success: false, err });
         if (!isMatch) {
@@ -46,10 +46,10 @@ module.exports = (app) => {
             message: 'Password is incorrect.',
           });
         }
-        // 비밀번호가 맞으면 토큰 생성
+        // Create token if password is correct
         user.generateToken((err, user) => {
           if (err) return res.send({ success: false, err });
-          // Save token in client cookie
+          // Store token in client cookie
           return res.cookie('x_auth', user.token).status(200).send({
             success: true,
             userId: user._id,
