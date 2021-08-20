@@ -20,7 +20,7 @@ module.exports = (app) => {
   app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
     // Save request user information
-    user.save((err, user) => {
+    user.save((err, userInfo) => {
       if (err) return res.send({ success: false, err });
 
       return res.status(200).send({ success: true });
@@ -46,7 +46,7 @@ module.exports = (app) => {
             message: 'Password is incorrect.',
           });
         }
-        // Create token if password is correct
+        // Generate token if password is correct
         user.generateToken((err, user) => {
           if (err) return res.send({ success: false, err });
           // Store token in client cookie

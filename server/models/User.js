@@ -15,12 +15,12 @@ const userSchema = new Schema({
   tokenExp: { type: Number },
 });
 
-// 저장하기 전 실행
+// Run before saving
 userSchema.pre('save', function (next) {
   var user = this;
-  // 비밀번호가 변환될 때만 실행
+  // Run only when password is converted
   if (user.isModified('password')) {
-    // 비밀번호 암호화
+    // Password encryption
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
 
@@ -46,7 +46,6 @@ userSchema.methods.comparePassword = function (plainPassword, callback) {
 
 userSchema.methods.generateToken = function (callback) {
   var user = this;
-  // jsonwebtoken을 이용해서 토큰 생성
   var token = jwt.sign(user._id.toHexString(), 'secretToken');
 
   user.token = token;
@@ -59,10 +58,10 @@ userSchema.methods.generateToken = function (callback) {
 
 userSchema.statics.findByToken = function (token, callback) {
   var user = this;
-  // Decode token
+  // Decode the token
   jwt.verify(token, 'secretToken', function (err, decoded) {
     if (err) return callback(err);
-    // 유저 아이디를 이용해서 유저를 찾은 후, token이 일치하는지 확인
+    // Use ID to find the user and verify that the token meatches
     user.findOne({ _id: decoded, token: token }, function (err, user) {
       if (err) return callback(err);
 
