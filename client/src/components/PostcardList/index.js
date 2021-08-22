@@ -30,14 +30,14 @@ const PostcardList = ({ postcards, fetchPostcards, hideAddBtn }) => {
           className={`card ${classes.postcard}`}
           key={postcard._id}
         >
-          <div className={`card-image ${classes.imgWrapper}`}>
+          <div className={`card-image ${classes.image}`}>
             <img src={postcard.photos[0].photoName} />
           </div>
           <div className={`card-content ${classes.theme}`}>
             <p>{postcard.theme}</p>
           </div>
           <div className={`card-content ${classes.description}`}>
-            <p>{postcard.description}</p>
+            <p>&nbsp;&nbsp;{postcard.description}</p>
           </div>
           <div
             className={`card-content grey-text text-darken-1 ${classes.owner}`}
