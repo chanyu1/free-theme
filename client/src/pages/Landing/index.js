@@ -6,7 +6,6 @@ import PostcardList from '../../components/PostcardList';
 const Landing = () => {
   return (
     <Fragment>
-      <div className="chip">Test chip</div>
       <PostcardList />
     </Fragment>
   );
