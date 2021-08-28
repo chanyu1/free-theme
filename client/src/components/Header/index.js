@@ -6,6 +6,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import classes from './style.module.css';
 import * as actions from '../../_actions/userAction';
+import Sidebar from '../Sidebar';
 
 const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {
@@ -35,13 +36,14 @@ const Header = ({ auth, logoutUser }) => {
   return (
     <nav className="blue-grey">
       <div className={`nav-wrapper ${classes.navWrapper}`}>
+        <Sidebar />
         <Link
           to={auth && auth.isAuth ? '/postcards' : '/'}
-          className="left brand-logo"
+          className={`left ${classes.brandLogo}`}
         >
           KOU
         </Link>
-        <ul className="right">
+        <ul className={`right ${classes.navRight}`}>
           {auth && auth.isAuth ? loginContent() : logoutContent()}
         </ul>
       </div>

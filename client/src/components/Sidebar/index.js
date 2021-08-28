@@ -13,8 +13,14 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div>
+    <span>
       <ul id="slide-out" className="sidenav">
+        <li>
+          <a className="blue-grey white-text sidenav-close">
+            Clicking this will close Sidenav
+          </a>
+        </li>
+
         <li>
           <div className="user-view">
             <div className="background">
@@ -52,10 +58,14 @@ const Sidebar = () => {
         </li>
       </ul>
 
-      <a href="#" data-target="slide-out" className="sidenav-trigger">
+      <a
+        href="#"
+        data-target="slide-out"
+        className="sidenav-trigger show-on-large"
+      >
         <i className="material-icons">menu</i>
       </a>
-    </div>
+    </span>
   );
 };
 
