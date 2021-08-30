@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Auth from './hoc/auth';
 import Header from './components/Header';
+import ChipList from './components/ChipList';
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -14,7 +15,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Header />
-        <div className="chip">Test chip</div>
+        <ChipList />
         <Switch>
           <Route exact path="/" component={Auth(Landing, false)} />
           <Route path="/signup" component={Auth(Register, false)} />
