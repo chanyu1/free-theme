@@ -6,13 +6,14 @@ import { Field } from 'redux-form';
 import InputField from '../../UI/InputField';
 
 export default (formData) => {
-  return _.map(formData, ({ label, name, type }) => {
+  return _.map(formData, ({ label, name, type, maxLength }) => {
     return (
       <Field
         label={label}
         name={name}
         type={type}
         key={name}
+        maxLength={maxLength}
         component={InputField}
       />
     );
