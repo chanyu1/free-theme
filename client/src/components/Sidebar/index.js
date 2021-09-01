@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-// import classes from './style.module.css';
+import classes from './style.module.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const Sidebar = ({ user }) => {
@@ -16,13 +16,15 @@ const Sidebar = ({ user }) => {
   return (
     <span>
       <ul id="slide-out" className="sidenav">
-        <li>
-          <a className="blue-grey white-text sidenav-close">
-            <i className="material-icons white-text">close</i>
-          </a>
-        </li>
+        <li></li>
 
         <li>
+          <div>
+            <a className={`blue-grey sidenav-close ${classes.sidebarClose}`}>
+              {/* <i className="material-icons">menu</i> */}
+              <i className="material-icons">menu</i>
+            </a>
+          </div>
           <div className="user-view">
             <div className="background">
               <img src="uploads/test02.jpg" />
@@ -40,35 +42,21 @@ const Sidebar = ({ user }) => {
         </li>
 
         <li>
-          <a href="#!">
-            <i className="material-icons">cloud</i>First Link With Icon
+          <a className="waves-effect" href="#">
+            <i className="material-icons">cloud</i>
+            Link link
           </a>
-        </li>
-
-        <li>
-          <a href="#!">Second Link</a>
         </li>
 
         <li>
           <div className="divider"></div>
-        </li>
-
-        <li>
-          <a className="subheader">Subheader</a>
-        </li>
-
-        <li>
-          <a className="waves-effect" href="#!">
-            Third Link With Waves
-            {console.log(user)}
-          </a>
         </li>
       </ul>
 
       <a
         href="#"
         data-target="slide-out"
-        className="sidenav-trigger show-on-large"
+        className={`sidenav-trigger show-on-large ${classes.sidebarOpen}`}
       >
         <i className="material-icons">menu</i>
       </a>

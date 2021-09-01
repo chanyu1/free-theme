@@ -1,11 +1,11 @@
-.navWrapper {
+.headerWrapper {
   font-family: Lexend, sans-serif;
 }
 
-.navWrapper .brandLogo {
+.headerWrapper .brandLogo {
   font-size: 2em;
 }
 
-.navWrapper .navRight {
+.headerWrapper .headerRight {
   margin-right: 18px;
 }

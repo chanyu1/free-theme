@@ -35,7 +35,7 @@ const Header = ({ auth, logoutUser }) => {
 
   return (
     <nav className="blue-grey">
-      <div className={`nav-wrapper ${classes.navWrapper}`}>
+      <div className={`nav-wrapper ${classes.headerWrapper}`}>
         <Sidebar />
         <Link
           to={auth && auth.isAuth ? '/postcards' : '/'}
@@ -43,7 +43,7 @@ const Header = ({ auth, logoutUser }) => {
         >
           KOU
         </Link>
-        <ul className={`right ${classes.navRight}`}>
+        <ul className={`right ${classes.headerRight}`}>
           {auth && auth.isAuth ? loginContent() : logoutContent()}
         </ul>
       </div>
