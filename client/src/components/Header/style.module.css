@@ -1,11 +1,13 @@
-.headerWrapper {
+.header {
   font-family: Lexend, sans-serif;
+  /* position: fixed; */
+  /* z-index: 998; */
 }
 
-.headerWrapper .brandLogo {
+.header .brandLogo {
   font-size: 2em;
 }
 
-.headerWrapper .headerRight {
+.header .content {
   margin-right: 18px;
 }

@@ -7,7 +7,7 @@ const ChipList = () => {
     <div className={classes.chipWrapper}>
       <div className="chip">Test chip</div>
       <div className="chip">Test chip</div>
-      <div className="chip">Test chip</div>
+      {/* <div className="chip">Test chip</div> */}
     </div>
   );
 };
