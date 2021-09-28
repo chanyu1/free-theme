@@ -1,13 +1,13 @@
 .postcardsWrapper {
   column-width: 220px;
-  column-gap: 8px;
+  column-gap: 20px;
   width: 90%;
-  max-width: 1350px;
+  max-width: 1400px;
   margin: 60px auto;
 }
 
 .postcard {
-  margin: 4px 0;
+  margin: 10px 0;
   text-align: left;
   display: inline-block;
 }
