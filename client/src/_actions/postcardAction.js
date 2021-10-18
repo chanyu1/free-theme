@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { FETCH_POSTCARDS, UPLOAD_POSTCARD, HIDE_ADD_BTN } from './types';
+import {
+  FETCH_POSTCARDS,
+  UPLOAD_POSTCARD,
+  HIDE_ADD_BTN,
+  FIX_SCROLLBAR,
+} from './types';
 
 export const fetchPostcards = () => async (dispatch) => {
   const res = await axios.get('/api/postcards');
@@ -19,4 +24,9 @@ export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {
 
 export const hideAddBtn = (changeAction) => (dispatch) => {
   dispatch({ type: HIDE_ADD_BTN, payload: changeAction });
+};
+
+export const fixScrollbar = (changeAction) => (dispatch) => {
+  console.log(changeAction);
+  dispatch({ type: FIX_SCROLLBAR, payload: changeAction });
 };

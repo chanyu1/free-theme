@@ -5,7 +5,12 @@ import classes from './style.module.css';
 import * as actions from '../../_actions/postcardAction';
 import PostcardModal from '../UI/Modal/PostcardModal';
 
-const PostcardList = ({ postcards, fetchPostcards, hideAddBtn }) => {
+const PostcardList = ({
+  postcards,
+  fetchPostcards,
+  hideAddBtn,
+  fixScrollbar,
+}) => {
   const [photos, setPhotos] = useState(null);
 
   useEffect(() => {
@@ -15,11 +20,13 @@ const PostcardList = ({ postcards, fetchPostcards, hideAddBtn }) => {
   const openPostcardHandler = (photos) => {
     setPhotos(photos);
     hideAddBtn(true);
+    fixScrollbar(true);
   };
 
   const closePostcardHandler = () => {
     setPhotos(null);
     hideAddBtn(false);
+    fixScrollbar(false);
   };
 
   const renderPostcards = () => {

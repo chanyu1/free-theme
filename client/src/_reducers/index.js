@@ -5,6 +5,7 @@ import authReducer from './authReducer';
 import userReducer from './userReducer';
 import postcardsReducer from './postcardsReducer';
 import btnReducer from './btnReducer';
+import scrollbarReducer from './scrollbarReducer';
 
 export default combineReducers({
   form: reduxForm,
@@ -12,4 +13,5 @@ export default combineReducers({
   user: userReducer,
   postcards: postcardsReducer,
   hideBtn: btnReducer,
+  fixScrollbar: scrollbarReducer,
 });

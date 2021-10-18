@@ -1,0 +1,5 @@
+.fixScrollbar {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none;
+}

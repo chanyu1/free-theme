@@ -6,3 +6,4 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const FETCH_POSTCARDS = 'FETCH_POSTCARDS';
 export const UPLOAD_POSTCARD = 'UPLOAD_POSTCARD';
 export const HIDE_ADD_BTN = 'HIDE_ADD_BTN';
+export const FIX_SCROLLBAR = 'FIX_SCROLLBAR';
