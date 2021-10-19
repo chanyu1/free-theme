@@ -27,6 +27,5 @@ export const hideAddBtn = (changeAction) => (dispatch) => {
 };
 
 export const fixScrollbar = (changeAction) => (dispatch) => {
-  console.log(changeAction);
   dispatch({ type: FIX_SCROLLBAR, payload: changeAction });
 };

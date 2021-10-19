@@ -18,6 +18,7 @@ const PostcardList = ({
   }, []);
 
   const openPostcardHandler = (photos) => {
+    console.log('1', photos);
     setPhotos(photos);
     hideAddBtn(true);
     fixScrollbar(true);
@@ -59,6 +60,7 @@ const PostcardList = ({
 
   return (
     <Fragment>
+      {console.log('2', photos)}
       {photos && (
         <PostcardModal
           photoList={photos}

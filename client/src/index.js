@@ -6,7 +6,6 @@ import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import reduxThunk from 'redux-thunk';
 
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Reducer from './_reducers';

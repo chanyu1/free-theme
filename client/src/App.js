@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 
-import classes from './App.module.css';
 import Auth from './hoc/auth';
 import Header from './components/Header';
 // import ChipList from './components/ChipList';
@@ -12,21 +12,35 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PostcardNew from './pages/PostcardNew';
 
-const App = (props) => {
+const App = ({ fixScrollbar }) => {
+  const GlobalStyle = createGlobalStyle`
+    ::-webkit-scrollbar {
+      display: none; /* Remove scrollbar */
+    }
+    body {
+      -ms-overflow-style: none; /* Remove scrollbar */
+      ${fixScrollbar && 'overflow: hidden'};
+      ${fixScrollbar && 'height: 100%'};
+    }
+    body * {
+      ${fixScrollbar && 'touch-action: none'};
+    }
+  `;
+
   return (
-    <BrowserRouter className={classes.fixScrollbar}>
-      {console.log(props.fixScrollbar)}
-      <Header />
-      {/* <ChipList /> */}
-      {/* <Switch className={`${props.fixScrollbar && classes.fixScrollbar}`}> */}
-      <Switch>
-        <Route exact path="/" component={Auth(Landing, false)} />
-        <Route path="/signup" component={Auth(Register, false)} />
-        <Route path="/login" component={Auth(Login, false)} />
-        <Route exact path="/postcards" component={Auth(Dashboard, true)} />
-        <Route path="/postcards/new" component={Auth(PostcardNew, true)} />
-      </Switch>
-    </BrowserRouter>
+    <Fragment>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Auth(Landing, false)} />
+          <Route path="/signup" component={Auth(Register, false)} />
+          <Route path="/login" component={Auth(Login, false)} />
+          <Route exact path="/postcards" component={Auth(Dashboard, true)} />
+          <Route path="/postcards/new" component={Auth(PostcardNew, true)} />
+        </Switch>
+      </BrowserRouter>
+    </Fragment>
   );
 };
 function mapStateToProps({ fixScrollbar }) {
