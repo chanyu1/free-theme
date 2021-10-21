@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './style.module.css';
@@ -8,24 +8,25 @@ import PostcardModal from '../UI/Modal/PostcardModal';
 const PostcardList = ({
   postcards,
   fetchPostcards,
+  modalPostcard,
+  postcard1,
   hideAddBtn,
   fixScrollbar,
 }) => {
-  const [photos, setPhotos] = useState(null);
-
   useEffect(() => {
     fetchPostcards();
   }, []);
 
   const openPostcardHandler = (photos) => {
-    console.log('1', photos);
-    setPhotos(photos);
+    modalPostcard(photos);
     hideAddBtn(true);
     fixScrollbar(true);
   };
 
+  const openPostcard1Handler = () => {};
+
   const closePostcardHandler = () => {
-    setPhotos(null);
+    modalPostcard([]);
     hideAddBtn(false);
     fixScrollbar(false);
   };
@@ -60,10 +61,10 @@ const PostcardList = ({
 
   return (
     <Fragment>
-      {console.log('2', photos)}
-      {photos && (
+      {/* {console.log('2', modalPostcard)} */}
+      {postcard1.length > 0 && (
         <PostcardModal
-          photoList={photos}
+          photoList={postcard1}
           onConfirm={() => closePostcardHandler()}
         />
       )}
@@ -72,8 +73,8 @@ const PostcardList = ({
   );
 };
 
-function mapStateToProps({ postcards }) {
-  return { postcards };
+function mapStateToProps({ postcards, postcard1 }) {
+  return { postcards, postcard1 };
 }
 
 export default connect(mapStateToProps, actions)(PostcardList);
