@@ -6,11 +6,11 @@ import { createGlobalStyle } from 'styled-components';
 import Auth from './hoc/auth';
 import Header from './components/Header';
 // import ChipList from './components/ChipList';
-import Landing from './pages/Landing';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import PostcardNew from './pages/PostcardNew';
+import Landing from './pages/landing1';
+import Register from './pages/register1';
+import Login from './pages/login1';
+import Dashboard from './pages/dashboard1';
+import PostcardNew from './pages/postcardNew1';
 
 const App = ({ fixScrollbar }) => {
   const GlobalStyle = createGlobalStyle`
