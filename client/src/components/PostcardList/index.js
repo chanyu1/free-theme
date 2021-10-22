@@ -23,8 +23,6 @@ const PostcardList = ({
     fixScrollbar(true);
   };
 
-  const openPostcard1Handler = () => {};
-
   const closePostcardHandler = () => {
     modalPostcard([]);
     hideAddBtn(false);
