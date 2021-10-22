@@ -2,8 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { Field } from 'redux-form';
 
-// import classes from './style.module.css';
-import InputField from '../../UI/InputField';
+import InputField from '../components/UI/InputField';
 
 export default (formData) => {
   return _.map(formData, ({ label, name, type, maxLength }) => {

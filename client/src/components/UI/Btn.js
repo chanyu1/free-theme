@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import classes from './style.module.css';
-
 const SubmitBtn = (props) => {
   return (
     <button

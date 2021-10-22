@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
-import classes from './style.module.css';
-import * as actions from '../../../_actions/userAction';
-import registerFieldData from '../../../commons/registerFieldData';
+import classes from './RegisterForm.module.css';
+import * as actions from '../../_actions/userAction';
+import registerFieldData from './data/fieldData';
 import renderField from '../renderField';
-import SubmitBtn from '../../UI/SubmitBtn';
+import SubmitBtn from '../../components/UI/Btn';
 
 const RegisterForm = ({ registerUser, history }) => {
   const onSubmitHandler = (event) => {

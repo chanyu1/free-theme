@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
-import classes from './style.module.css';
-import * as actions from '../../../_actions/postcardAction';
-import postcardFieldData from '../../../commons/postcardFieldData';
+import classes from './PostcardNewForm.module.css';
+import * as actions from '../../_actions/postcardAction';
+import postcardFieldData from './data/fieldData';
 import renderField from '../renderField';
-import SubmitBtn from '../../UI/SubmitBtn';
+import Btn from '../../components/UI/Btn';
 
-const PostcardForm = ({ uploadPostcard, history }) => {
+const PostcardNewForm = ({ uploadPostcard, history }) => {
   const [photoNumber, setPhotoNumber] = useState('');
   const [photos, setPhotos] = useState(null);
 
@@ -72,9 +72,9 @@ const PostcardForm = ({ uploadPostcard, history }) => {
         <Link to="/postcards" className="white-text btn-flat red">
           Cancel
         </Link>
-        <SubmitBtn btnColor="yellow darken-3" icon="done">
+        <Btn btnColor="yellow darken-3" icon="done">
           Upload
-        </SubmitBtn>
+        </Btn>
       </form>
     </div>
   );
@@ -92,5 +92,5 @@ const validate = (values) => {
 
 export default reduxForm({
   validate,
-  form: 'postcardForm',
-})(connect(null, actions)(withRouter(PostcardForm)));
+  form: 'postcardNewForm',
+})(connect(null, actions)(withRouter(PostcardNewForm)));

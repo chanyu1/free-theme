@@ -4,9 +4,9 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import classes from './style.module.css';
-import * as actions from '../../_actions/userAction';
-import Sidebar from '../Sidebar';
+import classes from './Header.module.css';
+import * as actions from '../_actions/userAction';
+import Sidebar from './Sidebar';
 
 const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {

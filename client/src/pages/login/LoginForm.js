@@ -3,12 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
+import { createGlobalStyle } from 'styled-components';
 
-import classes from './style.module.css';
-import * as actions from '../../../_actions/userAction';
-import loginFieldData from '../../../commons/loginFieldData';
+import classes from './LoginForm.module.css';
+import * as actions from '../../_actions/userAction';
+import loginFieldData from './data/fieldData';
 import renderField from '../renderField';
-import SubmitBtn from '../../UI/SubmitBtn';
+import SubmitBtn from '../../components/UI/Btn';
 
 const LoginForm = ({ loginUser }) => {
   const onSubmitHandler = (event) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './style.module.css';
+import classes from './ChipList.module.css';
 
 const ChipList = () => {
   return (

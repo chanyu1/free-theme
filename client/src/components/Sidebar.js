@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import classes from './style.module.css';
+import classes from './Sidebar.module.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const Sidebar = ({ user }) => {

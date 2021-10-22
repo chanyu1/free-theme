@@ -1,9 +1,9 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import classes from './style.module.css';
-import * as actions from '../../_actions/postcardAction';
-import PostcardModal from '../UI/Modal/PostcardModal';
+import classes from './PostcardList.module.css';
+import * as actions from '../_actions/postcardAction';
+import PostcardModal from './UI/Modal/PostcardModal';
 
 const PostcardList = ({
   postcards,

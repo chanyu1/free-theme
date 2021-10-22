@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
 
-// import classes from './style.module.css';
-import PostcardForm from '../../components/Forms/PostcardForm';
+import PostcardNewForm from './PostcardNewForm';
 
 const PostcardNew = () => {
   return (
     <Fragment>
-      <PostcardForm />
+      <PostcardNewForm />
     </Fragment>
   );
 };
