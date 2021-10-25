@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
+import styled from 'styled-components';
 
-import classes from './PostcardNewForm.module.css';
 import * as actions from '../../_actions/postcardAction';
 import postcardFieldData from './data/fieldData';
 import renderField from '../renderField';
 import Btn from '../../components/UI/Btn';
+
+const FormWrapperDiv = styled.div`
+  margin: 15vh 0;
+`;
 
 const PostcardNewForm = ({ uploadPostcard, history }) => {
   const [photoNumber, setPhotoNumber] = useState('');
@@ -45,7 +49,7 @@ const PostcardNewForm = ({ uploadPostcard, history }) => {
   };
 
   return (
-    <div className={`row ${classes.formWrapper}`}>
+    <FormWrapperDiv className="row">
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         <div className="file-field input-field">
           <div className="btn blue">
@@ -76,7 +80,7 @@ const PostcardNewForm = ({ uploadPostcard, history }) => {
           Upload
         </Btn>
       </form>
-    </div>
+    </FormWrapperDiv>
   );
 };
 

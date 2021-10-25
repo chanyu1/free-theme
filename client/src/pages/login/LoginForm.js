@@ -3,13 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-import classes from './LoginForm.module.css';
 import * as actions from '../../_actions/userAction';
 import loginFieldData from './data/fieldData';
 import renderField from '../renderField';
 import SubmitBtn from '../../components/UI/Btn';
+
+const FormWrapperDiv = styled.div`
+  margin: 25vh 0;
+`;
 
 const LoginForm = ({ loginUser }) => {
   const onSubmitHandler = (event) => {
@@ -26,7 +29,7 @@ const LoginForm = ({ loginUser }) => {
   };
 
   return (
-    <div className={`row ${classes.formWrapper}`}>
+    <FormWrapperDiv className="row">
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderField(loginFieldData)}
         <Link to="/signup" className="white-text btn-flat yellow darken-3">
@@ -36,7 +39,7 @@ const LoginForm = ({ loginUser }) => {
           Log in
         </SubmitBtn>
       </form>
-    </div>
+    </FormWrapperDiv>
   );
 };
 

@@ -3,12 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
+import styled from 'styled-components';
 
-import classes from './RegisterForm.module.css';
 import * as actions from '../../_actions/userAction';
 import registerFieldData from './data/fieldData';
 import renderField from '../renderField';
 import SubmitBtn from '../../components/UI/Btn';
+
+const FormWrapperDiv = styled.div`
+  margin: 10vh 0;
+`;
 
 const RegisterForm = ({ registerUser, history }) => {
   const onSubmitHandler = (event) => {
@@ -38,7 +42,7 @@ const RegisterForm = ({ registerUser, history }) => {
   };
 
   return (
-    <div className={`row ${classes.formWrapper}`}>
+    <FormWrapperDiv className="row">
       <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
         {renderField(registerFieldData)}
         <Link to="/" className="white-text btn-flat red">
@@ -48,7 +52,7 @@ const RegisterForm = ({ registerUser, history }) => {
           Sign up
         </SubmitBtn>
       </form>
-    </div>
+    </FormWrapperDiv>
   );
 };
 
