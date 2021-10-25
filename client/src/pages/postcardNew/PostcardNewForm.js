@@ -2,13 +2,13 @@ import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
 import * as actions from '../../_actions/postcardAction';
 import postcardFieldData from './data/fieldData';
-import renderField from '../renderField';
 import Btn from '../../components/UI/Btn';
+import InputField from '../../components/UI/InputField';
 
 const FormWrapperDiv = styled.div`
   margin: 15vh 0;
@@ -17,6 +17,21 @@ const FormWrapperDiv = styled.div`
 const PostcardNewForm = ({ uploadPostcard, history }) => {
   const [photoNumber, setPhotoNumber] = useState('');
   const [photos, setPhotos] = useState(null);
+
+  const renderField = (fieldData) => {
+    return _.map(fieldData, ({ label, name, type, maxLength }) => {
+      return (
+        <Field
+          label={label}
+          name={name}
+          type={type}
+          key={name}
+          maxLength={maxLength}
+          component={InputField}
+        />
+      );
+    });
+  };
 
   const fileSelectHandler = (event) => {
     if (event.target.files.length > 0) {

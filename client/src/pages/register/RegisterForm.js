@@ -2,19 +2,34 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
 import * as actions from '../../_actions/userAction';
 import registerFieldData from './data/fieldData';
-import renderField from '../renderField';
 import SubmitBtn from '../../components/UI/Btn';
+import InputField from '../../components/UI/InputField';
 
 const FormWrapperDiv = styled.div`
   margin: 10vh 0;
 `;
 
 const RegisterForm = ({ registerUser, history }) => {
+  const renderField = (fieldData) => {
+    return _.map(fieldData, ({ label, name, type, maxLength }) => {
+      return (
+        <Field
+          label={label}
+          name={name}
+          type={type}
+          key={name}
+          maxLength={maxLength}
+          component={InputField}
+        />
+      );
+    });
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
