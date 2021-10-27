@@ -10,14 +10,14 @@ import fieldData from './data/fieldData';
 import OrgPostcardNewForm from '../../components/organisms/OrgPostcardNewForm';
 
 const FormWrapperDiv = styled.div`
-  margin: 15vh 0;
+  margin: 20vh 0;
 `;
 
 const PostcardNew = ({ uploadPostcard, history }) => {
   const [photoNumber, setPhotoNumber] = useState('');
   const [photos, setPhotos] = useState(null);
 
-  const fileSelectHandler = (event) => {
+  const imgInputHandler = (event) => {
     if (event.target.files.length > 0) {
       setPhotoNumber(event.target.files.length);
       setPhotos(event.target.files);
@@ -49,36 +49,14 @@ const PostcardNew = ({ uploadPostcard, history }) => {
 
   return (
     <FormWrapperDiv className="row">
-      {/* <form className="col s6 offset-s3" onSubmit={onSubmitHandler}>
-        <div className="file-field input-field">
-          <div className="btn blue">
-            <span>File</span>
-            <input
-              name="photos"
-              type="file"
-              accept="image/jpg,image/png,image/jpeg,image/gif"
-              onChange={fileSelectHandler}
-              multiple
-            />
-          </div>
-          <div className="file-path-wrapper">
-            <input
-              className="file-path validate grey-text text-darken-1"
-              type="text"
-              placeholder=" Upload one or more photos"
-              value={photoNumber && ` You added ${photoNumber} photos`}
-              readOnly
-            />
-          </div>
-        </div>
-        {renderField(fieldData)}
-        <Link to="/postcards" className="white-text btn-flat red">
-          Cancel
-        </Link>
-        <Btn btnColor="yellow darken-3" icon="done">
-          Upload
-        </Btn>
-      </form> */}
+      <OrgPostcardNewForm
+        imgInputHandler={imgInputHandler}
+        photoNumber={photoNumber}
+        onSubmit={onSubmitHandler}
+        fieldData={fieldData}
+        leftButtonText="Cancel"
+        rightButtonText="Upload"
+      />
     </FormWrapperDiv>
   );
 };

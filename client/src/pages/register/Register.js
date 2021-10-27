@@ -10,7 +10,7 @@ import fieldData from './data/fieldData';
 import OrgRegisterForm from '../../components/organisms/OrgRegisterForm';
 
 const FormWrapperDiv = styled.div`
-  margin: 10vh 0;
+  margin: 15vh 0;
 `;
 
 const Register = ({ registerUser, history }) => {

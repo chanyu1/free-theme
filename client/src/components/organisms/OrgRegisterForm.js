@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Field } from 'redux-form';
 
 import AtmBtn from '../atoms/AtmBtn';
-import InputField from '../UI/InputField';
+import MolInputField from '../molecules/MolInputField';
 
 /**
  * @param {function} onSubmit
@@ -19,7 +19,7 @@ const OrgRegisterForm = ({
   leftButtonText,
   rightButtonText,
 }) => {
-  const renderField = (fieldData) => {
+  const renderInputField = (fieldData) => {
     return _.map(fieldData, ({ label, name, type, maxLength }) => {
       return (
         <Field
@@ -28,7 +28,7 @@ const OrgRegisterForm = ({
           type={type}
           key={name}
           maxLength={maxLength}
-          component={InputField}
+          component={MolInputField}
         />
       );
     });
@@ -36,7 +36,7 @@ const OrgRegisterForm = ({
 
   return (
     <form className="col s6 offset-s3" onSubmit={onSubmit}>
-      {renderField(fieldData)}
+      {renderInputField(fieldData)}
       <Link to="/" className="white-text btn-flat red">
         {leftButtonText}
       </Link>

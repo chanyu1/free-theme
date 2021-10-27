@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import { Field } from 'redux-form';
 
 import AtmBtn from '../atoms/AtmBtn';
-import InputField from '../UI/InputField';
+import MolImgInputField from '../molecules/MolImgInputField';
+import MolInputField from '../molecules/MolInputField';
+import MolTextareaField from '../molecules/MolTextareaField';
 
 /**
+ * @param {function} imgInput
  * @param {function} onSubmit
  * @param {Array}    fieldData
  * @param {String}   leftButtonText
@@ -14,12 +17,14 @@ import InputField from '../UI/InputField';
  */
 
 const OrgPostcardNewForm = ({
+  imgInputHandler,
+  photoNumber,
   onSubmit,
   fieldData,
   leftButtonText,
   rightButtonText,
 }) => {
-  const renderField = (fieldData) => {
+  const renderInputField = (fieldData) => {
     return _.map(fieldData, ({ label, name, type, maxLength }) => {
       return (
         <Field
@@ -28,7 +33,7 @@ const OrgPostcardNewForm = ({
           type={type}
           key={name}
           maxLength={maxLength}
-          component={InputField}
+          component={type === 'textarea' ? MolTextareaField : MolInputField}
         />
       );
     });
@@ -36,8 +41,14 @@ const OrgPostcardNewForm = ({
 
   return (
     <form className="col s6 offset-s3" onSubmit={onSubmit}>
-      {renderField(fieldData)}
-      <Link to="/" className="white-text btn-flat red">
+      <MolImgInputField
+        imgInputHandler={imgInputHandler}
+        btnText="File"
+        placeholder=" Upload one or more photos"
+        inputFiledText={photoNumber && ` You added ${photoNumber} photos`}
+      />
+      {renderInputField(fieldData)}
+      <Link to="/postcards" className="white-text btn-flat red">
         {leftButtonText}
       </Link>
       <AtmBtn
