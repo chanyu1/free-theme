@@ -16,7 +16,6 @@ const FormWrapperDiv = styled.div`
 const Register = ({ registerUser, history }) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
     if (
       !event.target.email.value ||
       !event.target.name.value ||
@@ -29,7 +28,6 @@ const Register = ({ registerUser, history }) => {
     ) {
       return alert('Passwords do not match.');
     }
-
     registerUser(
       {
         email: event.target.email.value,

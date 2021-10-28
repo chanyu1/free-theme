@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
-// import classes from './style.module.css';
-import Backdrop from '../Backdrop';
-import ModalOverlay from '../ModalOverlay';
+import Backdrop from './Backdrop';
+import ModalOverlay from './ModalOverlay';
 
 const PostcardModal = (props) => {
   return (

@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
+import { withRouter } from 'react-router-dom';
+import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
 import * as actions from '../../_actions/postcardAction';
@@ -26,7 +26,6 @@ const PostcardNew = ({ uploadPostcard, history }) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-
     if (
       !photos ||
       !event.target.theme.value ||
@@ -34,14 +33,12 @@ const PostcardNew = ({ uploadPostcard, history }) => {
     ) {
       return alert('Provide a whole field.');
     }
-
     const formData = new FormData();
     _.each(photos, (photo) => {
       formData.append('image', photo);
     });
     formData.append('theme', event.target.theme.value);
     formData.append('description', event.target.description.value);
-
     uploadPostcard(formData, history);
     setPhotoNumber('');
     setPhotos(null);
