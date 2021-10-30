@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import * as actions from '../_actions/postcardAction';
-import PostcardModal from './UI/Modal/PostcardModal';
+import PostcardModal from './modal/PostcardModal';
+// import PostcardModal from './UI/Modal/PostcardModal';
 
 const PostcardsWrapperDiv = styled.div`
   column-width: 220px;

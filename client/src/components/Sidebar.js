@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import classes from './Sidebar.module.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import styled from 'styled-components';
+
+const SidebarOpenA = styled.a`
+  padding: 0 8px;
+`;
+const SidebarCloseA = styled.a`
+  padding-left: 26px;
+`;
 
 const Sidebar = ({ user }) => {
   useEffect(() => {
@@ -20,10 +26,9 @@ const Sidebar = ({ user }) => {
 
         <li>
           <div>
-            <a className={`blue-grey sidenav-close ${classes.sidebarClose}`}>
-              {/* <i className="material-icons">menu</i> */}
+            <SidebarCloseA className="blue-grey sidenav-close">
               <i className="material-icons">menu</i>
-            </a>
+            </SidebarCloseA>
           </div>
           <div className="user-view">
             <div className="background">
@@ -53,13 +58,13 @@ const Sidebar = ({ user }) => {
         </li>
       </ul>
 
-      <a
-        href="#"
+      <SidebarOpenA
+        className="sidenav-trigger show-on-large"
         data-target="slide-out"
-        className={`sidenav-trigger show-on-large ${classes.sidebarOpen}`}
+        href="#"
       >
         <i className="material-icons">menu</i>
-      </a>
+      </SidebarOpenA>
     </span>
   );
 };

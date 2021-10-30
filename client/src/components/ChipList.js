@@ -1,14 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import classes from './ChipList.module.css';
+const ChipWrapperDiv = styled.div`
+  padding: 20px 20px 0;
+`;
+// border: 1px solid red;
 
 const ChipList = () => {
   return (
-    <div className={classes.chipWrapper}>
+    <ChipWrapperDiv>
       <div className="chip">Test chip</div>
       <div className="chip">Test chip</div>
       {/* <div className="chip">Test chip</div> */}
-    </div>
+    </ChipWrapperDiv>
   );
 };
 

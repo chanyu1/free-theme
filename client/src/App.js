@@ -43,6 +43,7 @@ const App = ({ fixScrollbar }) => {
     </Fragment>
   );
 };
+
 function mapStateToProps({ fixScrollbar }) {
   return { fixScrollbar };
 }
