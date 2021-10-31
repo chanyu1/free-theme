@@ -8,22 +8,25 @@ const PhotoImg = styled.img`
   width: 100%;
   margin-bottom: -5px;
 `;
+const ModalDiv = styled.div`
+  position: fixed;
+  left: 15%;
+  width: 70%;
+  z-index: 100;
+  overflow-y: initial !important;
+  @media (max-width: 768px) {
+    left: 0;
+    width: 100%;
+`;
 const ContentDiv = styled.div`
   height: 100vh;
   overflow-y: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 `;
-
-// .content::-webkit-scrollbar {
-//   display: none; /* Chrome, Safari, Opera */
-// }
-// @media (min-width: 768px) {
-//   .modal {
-//     left: calc(50% - 25rem);
-//     width: 50rem;
-//   }
-// }
 
 const ModalOverlay = ({ photoList, onConfirm }) => {
   const renderPhoto = () => {
@@ -37,10 +40,12 @@ const ModalOverlay = ({ photoList, onConfirm }) => {
   };
 
   return (
-    <Card>
-      <CloseBtn onClick={onConfirm}>Close</CloseBtn>
-      <ContentDiv>{renderPhoto()}</ContentDiv>
-    </Card>
+    <ModalDiv>
+      <Card>
+        <CloseBtn onClick={onConfirm}>Close</CloseBtn>
+        <ContentDiv>{renderPhoto()}</ContentDiv>
+      </Card>
+    </ModalDiv>
   );
 };
 

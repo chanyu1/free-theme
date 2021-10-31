@@ -5,7 +5,7 @@ import {
   UPLOAD_POSTCARD,
   HIDE_ADD_BTN,
   FIX_SCROLLBAR,
-  MODAL_POSTCARD,
+  POSTCARD_MODAL,
 } from './types';
 
 export const fetchPostcards = () => async (dispatch) => {
@@ -31,7 +31,6 @@ export const fixScrollbar = (changeAction) => (dispatch) => {
   dispatch({ type: FIX_SCROLLBAR, payload: changeAction });
 };
 
-export const modalPostcard = (changeAction) => (dispatch) => {
-  console.log('modal postcard', changeAction);
-  dispatch({ type: MODAL_POSTCARD, payload: changeAction });
+export const postcardModal = (changeAction) => (dispatch) => {
+  dispatch({ type: POSTCARD_MODAL, payload: changeAction });
 };

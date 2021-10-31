@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import * as actions from '../_actions/postcardAction';
 import PostcardModal from './modal/PostcardModal';
-// import PostcardModal from './UI/Modal/PostcardModal';
 
 const PostcardsWrapperDiv = styled.div`
   column-width: 220px;
@@ -33,31 +32,30 @@ const OwnerDiv = styled.div`
 `;
 
 const PostcardList = ({
-  postcards,
   fetchPostcards,
-  modalPostcard,
-  postcard1,
+  postcardModal,
   hideAddBtn,
   fixScrollbar,
+  postcards,
 }) => {
   useEffect(() => {
     fetchPostcards();
   }, []);
 
   const openPostcardHandler = (photos) => {
-    modalPostcard(photos);
+    postcardModal(photos);
     hideAddBtn(true);
     fixScrollbar(true);
   };
 
   const closePostcardHandler = () => {
-    modalPostcard([]);
+    postcardModal([]);
     hideAddBtn(false);
     fixScrollbar(false);
   };
 
   const renderPostcards = () => {
-    return postcards.map((postcard) => {
+    return postcards.postcardList.map((postcard) => {
       return (
         <PostcardDiv
           className="card"
@@ -84,10 +82,9 @@ const PostcardList = ({
 
   return (
     <Fragment>
-      {/* {console.log('2', modalPostcard)} */}
-      {postcard1.length > 0 && (
+      {postcards.postcardModal.length > 0 && (
         <PostcardModal
-          photoList={postcard1}
+          photoList={postcards.postcardModal}
           onConfirm={() => closePostcardHandler()}
         />
       )}
@@ -96,8 +93,9 @@ const PostcardList = ({
   );
 };
 
-function mapStateToProps({ postcards, postcard1 }) {
-  return { postcards, postcard1 };
+function mapStateToProps({ postcards }) {
+  console.log(postcards);
+  return { postcards };
 }
 
 export default connect(mapStateToProps, actions)(PostcardList);
