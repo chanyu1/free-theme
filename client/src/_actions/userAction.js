@@ -30,6 +30,7 @@ export const loginUser = (dataToSubmit) => async (dispatch) => {
   const res = await axios.post('/api/users/login', dataToSubmit);
 
   if (res.data.success) {
+    console.log(res.data);
     window.location.replace('/postcards');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {

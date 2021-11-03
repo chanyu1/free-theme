@@ -37,8 +37,10 @@ const PostcardList = ({
   hideAddBtn,
   fixScrollbar,
   postcards,
+  postcard,
 }) => {
   useEffect(() => {
+    console.log('use');
     fetchPostcards();
   }, []);
 
@@ -55,7 +57,7 @@ const PostcardList = ({
   };
 
   const renderPostcards = () => {
-    return postcards.postcardList.map((postcard) => {
+    return postcards.map((postcard) => {
       return (
         <PostcardDiv
           className="card"
@@ -82,9 +84,9 @@ const PostcardList = ({
 
   return (
     <Fragment>
-      {postcards.postcardModal.length > 0 && (
+      {postcard.length > 0 && (
         <PostcardModal
-          photoList={postcards.postcardModal}
+          photoList={postcard}
           onConfirm={() => closePostcardHandler()}
         />
       )}
@@ -93,9 +95,9 @@ const PostcardList = ({
   );
 };
 
-function mapStateToProps({ postcards }) {
-  console.log(postcards);
-  return { postcards };
+function mapStateToProps({ postcards, postcard }) {
+  // console.log(postcards);
+  return { postcards, postcard };
 }
 
 export default connect(mapStateToProps, actions)(PostcardList);

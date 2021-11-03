@@ -12,18 +12,18 @@ import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import PostcardNew from './pages/postcardNew/PostcardNew';
 
-const App = ({ postcards }) => {
+const App = ({ fixScrollbar }) => {
   const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
       display: none; /* Remove scrollbar */
     }
     body {
       -ms-overflow-style: none; /* Remove scrollbar */
-      // ${postcards.fixScrollbar && 'overflow: hidden'};
-      // ${postcards.fixScrollbar && 'height: 100%'};
+      ${fixScrollbar && 'overflow: hidden'};
+      ${fixScrollbar && 'height: 100%'};
     }
     body * {
-      // ${postcards.fixScrollbar && 'touch-action: none'};
+      ${fixScrollbar && 'touch-action: none'};
     }
   `;
 
@@ -44,8 +44,8 @@ const App = ({ postcards }) => {
   );
 };
 
-function mapStateToProps({ postcards }) {
-  return { postcards };
+function mapStateToProps({ fixScrollbar }) {
+  return { fixScrollbar };
 }
 
 export default connect(mapStateToProps)(App);
