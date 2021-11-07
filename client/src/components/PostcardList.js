@@ -96,7 +96,6 @@ const PostcardList = ({
 };
 
 function mapStateToProps({ postcards, postcard }) {
-  // console.log(postcards);
   return { postcards, postcard };
 }
 

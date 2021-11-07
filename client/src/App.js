@@ -13,6 +13,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import PostcardNew from './pages/postcardNew/PostcardNew';
 
 const App = ({ fixScrollbar }) => {
+  console.log(fixScrollbar);
   const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
       display: none; /* Remove scrollbar */

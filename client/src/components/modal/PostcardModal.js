@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Backdrop from './Backdrop';
 import ModalOverlay from './ModalOverlay';
 
-const PostcardModal = ({ onConfirm, photoList }) => {
+const PostcardModal = ({ photoList, onConfirm }) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(

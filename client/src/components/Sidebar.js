@@ -9,6 +9,12 @@ const SidebarOpenA = styled.a`
 const SidebarCloseA = styled.a`
   padding-left: 26px;
 `;
+const SidebarInfoContainerDiv = styled.div`
+  margin-top: 16px;
+`;
+const SidebarInfoDiv = styled.div`
+  padding-left: 16px;
+`;
 
 const Sidebar = ({ auth }) => {
   useEffect(() => {
@@ -19,58 +25,70 @@ const Sidebar = ({ auth }) => {
     });
   }, []);
 
+  const loginContent = () => {
+    return (
+      <div>
+        <SidebarInfoDiv>
+          <span className="white-text name">{auth?.name}</span>
+        </SidebarInfoDiv>
+        <a href="#email">
+          <span className="white-text">{auth?.email}</span>
+        </a>
+      </div>
+    );
+  };
+
+  const logoutContent = () => {
+    return (
+      <SidebarInfoContainerDiv>
+        <a href="/login">
+          <span className="white-text">Log in here!</span>
+        </a>
+      </SidebarInfoContainerDiv>
+    );
+  };
+
   return (
-    <div>
-      {auth?.isAuth ? (
-        <span>
-          <ul id="slide-out" className="sidenav">
-            <li></li>
-            <li>
-              <div>
-                <SidebarCloseA className="blue-grey sidenav-close">
-                  <i className="material-icons">menu</i>
-                </SidebarCloseA>
-              </div>
-              <div className="user-view">
-                <div className="background">
-                  <img src="uploads/test02.jpg" />
-                </div>
-                {/* <a href="#user"> */}
-                <img className="circle" src="uploads/test01.jpg" />
-                {/* </a> */}
-                {/* <a href="#name"> */}
-                <span className="white-text name">John Doe</span>
-                {/* </a> */}
-                {/* <a href="#email"> */}
-                <span className="white-text email">jdandturk@gmail.com</span>
-                {/* </a> */}
-              </div>
-            </li>
-            <li>
-              <a className="waves-effect" href="#">
-                <i className="material-icons">cloud</i>
-                Link link
-              </a>
-            </li>
-            <li>
-              <div className="divider"></div>
-            </li>
-          </ul>
-          <SidebarOpenA
-            className="sidenav-trigger show-on-large"
-            data-target="slide-out"
-            href="#"
-          >
-            <i className="material-icons">menu</i>
-          </SidebarOpenA>
-        </span>
-      ) : null}
-    </div>
+    <span>
+      <ul id="slide-out" className="sidenav">
+        <li>
+          <div>
+            <SidebarCloseA className="blue-grey sidenav-close">
+              <i className="material-icons">menu</i>
+            </SidebarCloseA>
+          </div>
+          <div className="user-view">
+            <div className="background">
+              <img src="uploads/test02.jpg" />
+            </div>
+            <a href="#user">
+              <img className="circle" src="uploads/test01.jpg" />
+            </a>
+            {auth?.isAuth ? loginContent() : logoutContent()}
+          </div>
+        </li>
+        <li>
+          <a className="waves-effect" href="#">
+            <i className="material-icons">cloud</i>
+            Test link
+          </a>
+        </li>
+        <li>
+          <div className="divider"></div>
+        </li>
+      </ul>
+      <SidebarOpenA
+        className="sidenav-trigger show-on-large"
+        data-target="slide-out"
+        href="#"
+      >
+        <i className="material-icons">menu</i>
+      </SidebarOpenA>
+    </span>
   );
 };
 
 function mapStateToProps({ auth }) {
-  console.log(auth);
   return { auth };
 }
 
