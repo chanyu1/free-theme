@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import * as actions from '../../_actions/postcardAction';
 import fieldData from './data/fieldData';
-import OrgPostcardNewForm from '../../components/organisms/OrgPostcardNewForm';
+import OrgPostcardNewForm from '../../components/atomic/organisms/OrgPostcardNewForm';
 
 const FormWrapperDiv = styled.div`
   margin: 20vh 0;

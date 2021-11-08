@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
@@ -12,8 +12,15 @@ import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
 import PostcardNew from './pages/postcardNew/PostcardNew';
 
-const App = ({ fixScrollbar }) => {
-  console.log(fixScrollbar);
+// const App = ({ postcards }) => {
+const App = ({ pstcards, fixScrollbar }) => {
+  // const [isFixScrollbar, setIsFixScrollbar] = useState(false);
+
+  // useEffect(() => {
+  //   setIsFixScrollbar(postcards.fixScrollbar);
+  // }, [postcards.fixScrollbar]);
+
+  console.log('app');
   const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
       display: none; /* Remove scrollbar */
@@ -30,6 +37,7 @@ const App = ({ fixScrollbar }) => {
 
   return (
     <Fragment>
+      {console.log('app1')}
       <GlobalStyle />
       <BrowserRouter>
         <Header />
@@ -45,8 +53,12 @@ const App = ({ fixScrollbar }) => {
   );
 };
 
-function mapStateToProps({ fixScrollbar }) {
-  return { fixScrollbar };
+function mapStateToProps({ pstcards, fixScrollbar }) {
+  return { pstcards, fixScrollbar };
 }
+
+// function mapStateToProps({ postcards }) {
+//   return { postcards };
+// }
 
 export default connect(mapStateToProps)(App);

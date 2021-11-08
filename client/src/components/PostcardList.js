@@ -32,15 +32,14 @@ const OwnerDiv = styled.div`
 `;
 
 const PostcardList = ({
-  fetchPostcards,
-  postcardModal,
-  hideAddBtn,
-  fixScrollbar,
+  fetchPostcards, //
+  postcardModal, //
+  hideAddBtn, //
+  fixScrollbar, //
   postcards,
   postcard,
 }) => {
   useEffect(() => {
-    console.log('use');
     fetchPostcards();
   }, []);
 
@@ -57,7 +56,7 @@ const PostcardList = ({
   };
 
   const renderPostcards = () => {
-    return postcards.map((postcard) => {
+    return postcards.postcardList.map((postcard) => {
       return (
         <PostcardDiv
           className="card"
@@ -84,12 +83,13 @@ const PostcardList = ({
 
   return (
     <Fragment>
-      {postcard.length > 0 && (
+      {postcards.postcardModal.length > 0 && (
         <PostcardModal
-          photoList={postcard}
+          photoList={postcards.postcardModal}
           onConfirm={() => closePostcardHandler()}
         />
       )}
+      {console.log(111)}
       <PostcardsWrapperDiv>{renderPostcards()}</PostcardsWrapperDiv>
     </Fragment>
   );

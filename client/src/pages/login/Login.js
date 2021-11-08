@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import * as actions from '../../_actions/userAction';
 import fieldData from './data/fieldData';
-import OrgLoginForm from '../../components/organisms/OrgLoginForm';
+import OrgLoginForm from '../../components/atomic/organisms/OrgLoginForm';
 
 const FormWrapperDiv = styled.div`
   margin: 25vh 0;

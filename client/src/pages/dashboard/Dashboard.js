@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import PostcardList from '../../components/PostcardList';
-import AtmFloatBtn from '../../components/atoms/AtmFloatBtn';
+import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
 
 const Dashboard = ({ hideBtn }) => {
   return (

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import * as actions from '../../_actions/userAction';
 import fieldData from './data/fieldData';
-import OrgRegisterForm from '../../components/organisms/OrgRegisterForm';
+import OrgRegisterForm from '../../components/atomic/organisms/OrgRegisterForm';
 
 const FormWrapperDiv = styled.div`
   margin: 15vh 0;
