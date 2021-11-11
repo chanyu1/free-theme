@@ -5,7 +5,6 @@ import React from 'react';
  * @param {String} color
  * @param {String} icon
  */
-
 const AtmBtn = ({ buttonText, color, icon }) => {
   return (
     <button type="submit" className={`${color} btn-flat right white-text`}>

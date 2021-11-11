@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
-import * as actions from '../../_actions/userAction';
+import { registerUser } from '../../_actions/userAction';
 import fieldData from './data/fieldData';
 import OrgRegisterForm from '../../components/atomic/organisms/OrgRegisterForm';
 
@@ -63,4 +63,4 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'register',
-})(connect(null, actions)(withRouter(Register)));
+})(connect(null, { registerUser })(withRouter(Register)));

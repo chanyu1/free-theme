@@ -12,7 +12,6 @@ import MolInputField from '../molecules/MolInputField';
  * @param {String}   leftButtonText
  * @param {String}   rightButtonText
  */
-
 const OrgLoginForm = ({
   onSubmit,
   fieldData,

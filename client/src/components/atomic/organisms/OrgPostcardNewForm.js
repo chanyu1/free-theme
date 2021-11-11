@@ -15,7 +15,6 @@ import MolTextareaField from '../molecules/MolTextareaField';
  * @param {String}   leftButtonText
  * @param {String}   rightButtonText
  */
-
 const OrgPostcardNewForm = ({
   imgInputHandler,
   photoNumber,

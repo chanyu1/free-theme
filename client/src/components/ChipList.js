@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const ChipWrapperDiv = styled.div`
   padding: 20px 20px 0;
+  // border: 1px solid red;
 `;
-// border: 1px solid red;
 
 const ChipList = () => {
   return (

@@ -5,11 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import styled from 'styled-components';
 
-import * as actions from '../_actions/userAction';
+import { logoutUser } from '../_actions/userAction';
 import Sidebar from './Sidebar';
 
-// position: fixed;
-// z-index: 998;
 const HeaderWrapperDiv = styled.div`
   font-family: Lexend, sans-serif;
 `;
@@ -68,4 +66,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(Header));
+export default connect(mapStateToProps, { logoutUser })(withRouter(Header));

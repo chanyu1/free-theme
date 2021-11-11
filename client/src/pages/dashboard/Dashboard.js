@@ -4,17 +4,21 @@ import { connect } from 'react-redux';
 import PostcardList from '../../components/PostcardList';
 import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
 
-const Dashboard = ({ hideBtn }) => {
+const Dashboard = ({ common }) => {
   return (
     <Fragment>
       <PostcardList />
-      <AtmFloatBtn location="/postcards/new" icon="add" hideBtn={hideBtn} />
+      <AtmFloatBtn
+        location="/postcards/new"
+        icon="add"
+        hideBtn={common.hideAddBtn}
+      />
     </Fragment>
   );
 };
 
-function mapStateToProps({ hideBtn }) {
-  return { hideBtn };
+function mapStateToProps({ common }) {
+  return { common };
 }
 
 export default connect(mapStateToProps)(Dashboard);

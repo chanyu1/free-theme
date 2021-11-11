@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 
 import { authUser } from '../_actions/userAction';
 
-// null  => 아무나 출입 가능한 페이지
-// true  => 로그인한 유저만 출입 가능한 페이지
-// false => 로그인한 유저는 출입 불가능한 페이지
+// null  -> Anyone can enter
+// true  -> Only log in user can enter
+// false -> Log in user can not enter
 export default (SpecificComponent, option, adminRoute = null) => {
   const AuthenticationCheck = ({ history }) => {
     const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
 
-import * as actions from '../../_actions/postcardAction';
+import { uploadPostcard } from '../../_actions/postcardAction';
 import fieldData from './data/fieldData';
 import OrgPostcardNewForm from '../../components/atomic/organisms/OrgPostcardNewForm';
 
@@ -71,4 +71,4 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'postcardNew',
-})(connect(null, actions)(withRouter(PostcardNew)));
+})(connect(null, { uploadPostcard })(withRouter(PostcardNew)));

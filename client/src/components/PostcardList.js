@@ -2,7 +2,8 @@ import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import * as actions from '../_actions/postcardAction';
+import { hideAddBtn, fixScrollbar } from '../_actions/commonAction';
+import { fetchPostcards, postcardModal } from '../_actions/postcardAction';
 import PostcardModal from './modal/PostcardModal';
 
 const PostcardsWrapperDiv = styled.div`
@@ -32,12 +33,11 @@ const OwnerDiv = styled.div`
 `;
 
 const PostcardList = ({
-  fetchPostcards, //
-  postcardModal, //
-  hideAddBtn, //
-  fixScrollbar, //
+  fetchPostcards,
+  postcardModal,
+  hideAddBtn,
+  fixScrollbar,
   postcards,
-  postcard,
 }) => {
   useEffect(() => {
     fetchPostcards();
@@ -89,14 +89,18 @@ const PostcardList = ({
           onConfirm={() => closePostcardHandler()}
         />
       )}
-      {console.log(111)}
       <PostcardsWrapperDiv>{renderPostcards()}</PostcardsWrapperDiv>
     </Fragment>
   );
 };
 
-function mapStateToProps({ postcards, postcard }) {
-  return { postcards, postcard };
+function mapStateToProps({ postcards }) {
+  return { postcards };
 }
 
-export default connect(mapStateToProps, actions)(PostcardList);
+export default connect(mapStateToProps, {
+  hideAddBtn,
+  fixScrollbar,
+  fetchPostcards,
+  postcardModal,
+})(PostcardList);
