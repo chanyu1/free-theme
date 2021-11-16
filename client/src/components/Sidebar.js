@@ -1,10 +1,22 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import classes from './Sidebar.module.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import styled from 'styled-components';
 
-const Sidebar = ({ user }) => {
+const SidebarOpenA = styled.a`
+  padding: 0 8px;
+`;
+const SidebarCloseA = styled.a`
+  padding-left: 26px;
+`;
+const SidebarInfoContainerDiv = styled.div`
+  margin-top: 16px;
+`;
+const SidebarInfoDiv = styled.div`
+  padding-left: 16px;
+`;
+
+const Sidebar = ({ auth }) => {
   useEffect(() => {
     let elem = document.querySelector('.sidenav');
     M.Sidenav.init(elem, {
@@ -13,60 +25,71 @@ const Sidebar = ({ user }) => {
     });
   }, []);
 
+  const loginContent = () => {
+    return (
+      <div>
+        <SidebarInfoDiv>
+          <span className="white-text name">{auth?.name}</span>
+        </SidebarInfoDiv>
+        <a href="#email">
+          <span className="white-text">{auth?.email}</span>
+        </a>
+      </div>
+    );
+  };
+
+  const logoutContent = () => {
+    return (
+      <SidebarInfoContainerDiv>
+        <a href="/login">
+          <span className="white-text">Log in here!</span>
+        </a>
+      </SidebarInfoContainerDiv>
+    );
+  };
+
   return (
     <span>
       <ul id="slide-out" className="sidenav">
-        <li></li>
-
         <li>
           <div>
-            <a className={`blue-grey sidenav-close ${classes.sidebarClose}`}>
-              {/* <i className="material-icons">menu</i> */}
+            <SidebarCloseA className="blue-grey sidenav-close">
               <i className="material-icons">menu</i>
-            </a>
+            </SidebarCloseA>
           </div>
           <div className="user-view">
             <div className="background">
               <img src="uploads/test02.jpg" />
             </div>
-            {/* <a href="#user"> */}
-            <img className="circle" src="uploads/test01.jpg" />
-            {/* </a> */}
-            {/* <a href="#name"> */}
-            <span className="white-text name">John Doe</span>
-            {/* </a> */}
-            {/* <a href="#email"> */}
-            <span className="white-text email">jdandturk@gmail.com</span>
-            {/* </a> */}
+            <a href="#user">
+              <img className="circle" src="uploads/test01.jpg" />
+            </a>
+            {auth?.isAuth ? loginContent() : logoutContent()}
           </div>
         </li>
-
         <li>
           <a className="waves-effect" href="#">
             <i className="material-icons">cloud</i>
-            Link link
+            Test link
           </a>
         </li>
-
         <li>
           <div className="divider"></div>
         </li>
       </ul>
-
-      <a
-        href="#"
+      <SidebarOpenA
+        className="sidenav-trigger show-on-large"
         data-target="slide-out"
-        className={`sidenav-trigger show-on-large ${classes.sidebarOpen}`}
+        href="#"
       >
         <i className="material-icons">menu</i>
-      </a>
+      </SidebarOpenA>
     </span>
   );
 };
 
-function mapStateToProps({ user }) {
-  return { user };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Sidebar);
-// export default Sidebar;

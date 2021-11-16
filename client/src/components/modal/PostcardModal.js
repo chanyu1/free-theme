@@ -1,22 +1,18 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
-// import classes from './style.module.css';
-import Backdrop from '../Backdrop';
-import ModalOverlay from '../ModalOverlay';
+import Backdrop from './Backdrop';
+import ModalOverlay from './ModalOverlay';
 
-const PostcardModal = (props) => {
+const PostcardModal = ({ photoList, onConfirm }) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
+        <Backdrop onConfirm={onConfirm} />,
         document.getElementById('backdrop-root'),
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay
-          photoList={props.photoList}
-          onConfirm={props.onConfirm}
-        />,
+        <ModalOverlay photoList={photoList} onConfirm={onConfirm} />,
         document.getElementById('overlay-root'),
       )}
     </Fragment>

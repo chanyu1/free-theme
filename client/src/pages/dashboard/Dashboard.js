@@ -1,16 +1,24 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-// import classes from './style.module.css';
 import PostcardList from '../../components/PostcardList';
-import FloatBtn from '../../components/UI/FloatBtn';
+import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
 
-const Dashboard = () => {
+const Dashboard = ({ common }) => {
   return (
     <Fragment>
       <PostcardList />
-      <FloatBtn location="/postcards/new" icon="add" />
+      <AtmFloatBtn
+        location="/postcards/new"
+        icon="add"
+        hideBtn={common.hideAddBtn}
+      />
     </Fragment>
   );
 };
 
-export default Dashboard;
+function mapStateToProps({ common }) {
+  return { common };
+}
+
+export default connect(mapStateToProps)(Dashboard);

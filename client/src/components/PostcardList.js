@@ -1,78 +1,106 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import classes from './PostcardList.module.css';
-import * as actions from '../_actions/postcardAction';
-import PostcardModal from './UI/Modal/PostcardModal';
+import { hideAddBtn, fixScrollbar } from '../_actions/commonAction';
+import { fetchPostcards, postcardModal } from '../_actions/postcardAction';
+import PostcardModal from './modal/PostcardModal';
+
+const PostcardsWrapperDiv = styled.div`
+  column-width: 220px;
+  column-gap: 20px;
+  width: 90%;
+  max-width: 1400px;
+  margin: 60px auto;
+`;
+const PostcardDiv = styled.div`
+  margin: 10px 0;
+  text-align: left;
+  display: inline-block;
+`;
+const ThemeDiv = styled.div`
+  font-size: 1.3rem;
+  padding-top: 24px;
+  padding-bottom: 10px;
+`;
+const DescriptionDiv = styled.div`
+  padding-top: 14px;
+  padding-bottom: 14px;
+`;
+const OwnerDiv = styled.div`
+  padding-top: 10px;
+  padding-bottom: 24px;
+`;
 
 const PostcardList = ({
-  postcards,
   fetchPostcards,
-  modalPostcard,
-  postcard1,
+  postcardModal,
   hideAddBtn,
   fixScrollbar,
+  postcards,
 }) => {
   useEffect(() => {
     fetchPostcards();
   }, []);
 
   const openPostcardHandler = (photos) => {
-    modalPostcard(photos);
+    postcardModal(photos);
     hideAddBtn(true);
     fixScrollbar(true);
   };
 
   const closePostcardHandler = () => {
-    modalPostcard([]);
+    postcardModal([]);
     hideAddBtn(false);
     fixScrollbar(false);
   };
 
   const renderPostcards = () => {
-    return postcards.map((postcard) => {
+    return postcards.postcardList.map((postcard) => {
       return (
-        <div
+        <PostcardDiv
+          className="card"
           onClick={() => openPostcardHandler(postcard.photos)}
-          className={`card ${classes.postcard}`}
           key={postcard._id}
         >
           <div className="card-image">
             <img src={postcard.photos[0].photoName} />
           </div>
-          <div className={`card-content ${classes.theme}`}>
+          <ThemeDiv className="card-content">
             <p>{postcard.theme}</p>
-          </div>
-          <div className={`card-content ${classes.description}`}>
+          </ThemeDiv>
+          <DescriptionDiv className="card-content">
             <p>&nbsp;&nbsp;{postcard.description}</p>
-          </div>
-          <div
-            className={`card-content grey-text text-darken-1 ${classes.owner}`}
-          >
+          </DescriptionDiv>
+          <OwnerDiv className="card-content grey-text text-darken-1">
             <p>{postcard.owner}</p>
             <p>{postcard.ownerEmail}</p>
-          </div>
-        </div>
+          </OwnerDiv>
+        </PostcardDiv>
       );
     });
   };
 
   return (
     <Fragment>
-      {/* {console.log('2', modalPostcard)} */}
-      {postcard1.length > 0 && (
+      {postcards.postcardModal.length > 0 && (
         <PostcardModal
-          photoList={postcard1}
+          photoList={postcards.postcardModal}
           onConfirm={() => closePostcardHandler()}
         />
       )}
-      <div className={classes.postcardsWrapper}>{renderPostcards()}</div>
+      <PostcardsWrapperDiv>{renderPostcards()}</PostcardsWrapperDiv>
     </Fragment>
   );
 };
 
-function mapStateToProps({ postcards, postcard1 }) {
-  return { postcards, postcard1 };
+function mapStateToProps({ postcards }) {
+  return { postcards };
 }
 
-export default connect(mapStateToProps, actions)(PostcardList);
+export default connect(mapStateToProps, {
+  hideAddBtn,
+  fixScrollbar,
+  fetchPostcards,
+  postcardModal,
+})(PostcardList);

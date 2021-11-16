@@ -3,10 +3,20 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import styled from 'styled-components';
 
-import classes from './Header.module.css';
-import * as actions from '../_actions/userAction';
+import { logoutUser } from '../_actions/userAction';
 import Sidebar from './Sidebar';
+
+const HeaderWrapperDiv = styled.div`
+  font-family: Lexend, sans-serif;
+`;
+const BrandLogoDiv = styled.div`
+  font-size: 2em;
+`;
+const ContentDiv = styled.div`
+  margin-right: 18px;
+`;
 
 const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {
@@ -34,20 +44,21 @@ const Header = ({ auth, logoutUser }) => {
   };
 
   return (
-    <nav className={`blue-grey ${classes.header}`}>
-      <div className="nav-wrapper">
-        <Sidebar />
-        <Link
-          to={auth && auth.isAuth ? '/postcards' : '/'}
-          className={`left ${classes.brandLogo}`}
-        >
-          KOU
-        </Link>
-        <ul className={`right ${classes.content}`}>
-          {auth && auth.isAuth ? loginContent() : logoutContent()}
-        </ul>
-      </div>
-    </nav>
+    <HeaderWrapperDiv>
+      <nav className="blue-grey">
+        <div className="nav-wrapper">
+          <Sidebar />
+          <Link className="left" to={auth?.isAuth ? '/postcards' : '/'}>
+            <BrandLogoDiv>KOU</BrandLogoDiv>
+          </Link>
+          <ul className="right">
+            <ContentDiv>
+              {auth?.isAuth ? loginContent() : logoutContent()}
+            </ContentDiv>
+          </ul>
+        </div>
+      </nav>
+    </HeaderWrapperDiv>
   );
 };
 
@@ -55,4 +66,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps, actions)(withRouter(Header));
+export default connect(mapStateToProps, { logoutUser })(withRouter(Header));
