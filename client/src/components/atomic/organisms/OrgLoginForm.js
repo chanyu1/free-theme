@@ -36,7 +36,7 @@ const OrgLoginForm = ({
   return (
     <form className="col s6 offset-s3" onSubmit={onSubmit}>
       {renderInputField(fieldData)}
-      <Link to="/signup" className="white-text btn-flat yellow darken-3">
+      <Link to="/signup" className="white-text btn yellow darken-3">
         {leftButtonText}
       </Link>
       <AtmBtn buttonText={rightButtonText} color="teal" icon="done" />

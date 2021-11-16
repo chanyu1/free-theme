@@ -36,13 +36,14 @@ const OrgRegisterForm = ({
   return (
     <form className="col s6 offset-s3" onSubmit={onSubmit}>
       {renderInputField(fieldData)}
-      <Link to="/" className="white-text btn-flat red">
+      <Link to="/" className="white-text btn red">
         {leftButtonText}
       </Link>
       <AtmBtn
         buttonText={rightButtonText}
         color="yellow darken-3"
         icon="done"
+        isDisabled={true}
       />
     </form>
   );

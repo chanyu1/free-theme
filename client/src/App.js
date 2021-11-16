@@ -5,8 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import Auth from './hoc/auth';
 import Header from './components/Header';
-// import ChipList from './components/ChipList';
-import Landing from './pages/landing/Landing';
+// import Landing from './pages/landing/Landing';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -33,7 +32,8 @@ const App = ({ common }) => {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/" component={Auth(Landing, false)} />
+          <Route exact path="/" component={Auth(Login, false)} />
+          {/* <Route exact path="/" component={Auth(Landing, false)} /> */}
           <Route path="/signup" component={Auth(Register, false)} />
           <Route path="/login" component={Auth(Login, false)} />
           <Route exact path="/postcards" component={Auth(Dashboard, true)} />

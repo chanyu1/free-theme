@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * @param {function} imgInputHandler
+ * @param {String}   btnText
+ * @param {String}   placeholder
+ * @param {String}   inputFiledText
+ */
 const MolImgInputField = ({
   imgInputHandler,
   btnText,
@@ -20,10 +26,10 @@ const MolImgInputField = ({
       </div>
       <div className="file-path-wrapper">
         <input
-          className="file-path validate grey-text text-darken-1"
+          className="file-path grey-text text-darken-1"
           type="text"
           placeholder={placeholder}
-          value={inputFiledText}
+          value={inputFiledText && inputFiledText}
           readOnly
         />
       </div>

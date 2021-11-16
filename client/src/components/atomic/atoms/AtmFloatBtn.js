@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * @param {String}  location
+ * @param {String}  icon
+ * @param {Boolean} hideBtn
+ */
 const AtmFloatBtn = ({ location, icon, hideBtn = false }) => {
   return (
     <div className="fixed-action-btn">

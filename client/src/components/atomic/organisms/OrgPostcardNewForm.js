@@ -9,16 +9,17 @@ import MolInputField from '../molecules/MolInputField';
 import MolTextareaField from '../molecules/MolTextareaField';
 
 /**
- * @param {function} imgInput
+ * @param {function} imgInputHandler
  * @param {function} onSubmit
+ * @param {Number}   photoNumber
  * @param {Array}    fieldData
  * @param {String}   leftButtonText
  * @param {String}   rightButtonText
  */
 const OrgPostcardNewForm = ({
   imgInputHandler,
-  photoNumber,
   onSubmit,
+  photoNumber,
   fieldData,
   leftButtonText,
   rightButtonText,
@@ -44,7 +45,9 @@ const OrgPostcardNewForm = ({
         imgInputHandler={imgInputHandler}
         btnText="File"
         placeholder=" Upload one or more photos"
-        inputFiledText={photoNumber && ` You added ${photoNumber} photos`}
+        inputFiledText={
+          photoNumber > 0 ? ` You added ${photoNumber} photos` : ''
+        }
       />
       {renderInputField(fieldData)}
       <Link to="/postcards" className="white-text btn-flat red">

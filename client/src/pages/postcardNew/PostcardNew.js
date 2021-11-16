@@ -14,7 +14,7 @@ const FormWrapperDiv = styled.div`
 `;
 
 const PostcardNew = ({ uploadPostcard, history }) => {
-  const [photoNumber, setPhotoNumber] = useState('');
+  const [photoNumber, setPhotoNumber] = useState(0);
   const [photos, setPhotos] = useState(null);
 
   const imgInputHandler = (event) => {
@@ -40,7 +40,7 @@ const PostcardNew = ({ uploadPostcard, history }) => {
     formData.append('theme', event.target.theme.value);
     formData.append('description', event.target.description.value);
     uploadPostcard(formData, history);
-    setPhotoNumber('');
+    setPhotoNumber(0);
     setPhotos(null);
   };
 

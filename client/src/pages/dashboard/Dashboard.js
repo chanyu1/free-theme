@@ -2,17 +2,17 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import PostcardList from '../../components/PostcardList';
-import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
+// import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
 
 const Dashboard = ({ common }) => {
   return (
     <Fragment>
       <PostcardList />
-      <AtmFloatBtn
+      {/* <AtmFloatBtn
         location="/postcards/new"
         icon="add"
         hideBtn={common.hideAddBtn}
-      />
+      /> */}
     </Fragment>
   );
 };
