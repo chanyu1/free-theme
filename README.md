@@ -15,10 +15,6 @@
 - MongoDB
 - Heroku
 
-### 開発期間
-
-- 2021.7 ~ 2021.11
-
 <!-- Line -->
 
 ---
@@ -37,7 +33,3 @@
 - Node.js(Express)
 - MongoDB
 - Heroku
-
-### 개발 기간
-
-- 2021.7 ~ 2021.11

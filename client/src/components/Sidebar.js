@@ -15,6 +15,9 @@ const SidebarInfoContainerDiv = styled.div`
 const SidebarInfoDiv = styled.div`
   padding-left: 16px;
 `;
+const EmptyDiv = styled.div`
+  padding: 8px;
+`;
 
 const Sidebar = ({ auth }) => {
   useEffect(() => {
@@ -57,7 +60,7 @@ const Sidebar = ({ auth }) => {
               <i className="material-icons">menu</i>
             </SidebarCloseA>
           </div>
-          <div className="user-view">
+          {/* <div className="user-view">
             <div className="background">
               <img src="uploads/test02.jpg" />
             </div>
@@ -65,17 +68,34 @@ const Sidebar = ({ auth }) => {
               <img className="circle" src="uploads/test01.jpg" />
             </a>
             {auth?.isAuth ? loginContent() : logoutContent()}
-          </div>
+          </div> */}
         </li>
+        <EmptyDiv />
         <li>
-          <a className="waves-effect" href="#">
-            <i className="material-icons">cloud</i>
-            Test link
+          <a className="waves-effect" href="/">
+            <i className="material-icons">acount</i>
+            About
           </a>
         </li>
         <li>
-          <div className="divider"></div>
+          <a className="waves-effect" href="/photography">
+            <i className="material-icons">photo</i>
+            Photography
+          </a>
         </li>
+        <li>
+          <a className="waves-effect" href="/cinematography">
+            <i className="material-icons">cinema</i>
+            Cinematography
+          </a>
+        </li>
+        <li>
+          <a className="waves-effect" href="/contact">
+            <i className="material-icons">phone</i>
+            Contact
+          </a>
+        </li>
+        {/* <div className="divider" /> */}
       </ul>
       <SidebarOpenA
         className="sidenav-trigger show-on-large"

@@ -10,7 +10,6 @@ const AtmBtn = ({ buttonText, color, icon, isDisabled = false }) => {
   return (
     <button
       type="submit"
-      // disabled={isDisabled}
       className={`${isDisabled && 'disabled'} ${color} btn right white-text`}
     >
       {buttonText}

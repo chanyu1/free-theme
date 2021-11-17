@@ -57,6 +57,7 @@ const OrgPostcardNewForm = ({
         buttonText={rightButtonText}
         color="yellow darken-3"
         icon="done"
+        isDisabled={true}
       />
     </form>
   );
