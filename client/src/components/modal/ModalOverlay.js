@@ -17,6 +17,7 @@ const ModalDiv = styled.div`
   @media (max-width: 768px) {
     left: 0;
     width: 100%;
+  }
 `;
 const ContentDiv = styled.div`
   height: 100vh;

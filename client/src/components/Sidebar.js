@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import styled from 'styled-components';
 
@@ -9,17 +9,21 @@ const SidebarOpenA = styled.a`
 const SidebarCloseA = styled.a`
   padding-left: 26px;
 `;
-const SidebarInfoContainerDiv = styled.div`
-  margin-top: 16px;
-`;
-const SidebarInfoDiv = styled.div`
-  padding-left: 16px;
+// const SidebarInfoContainerDiv = styled.div`
+//   margin-top: 16px;
+// `;
+// const SidebarInfoDiv = styled.div`
+//   padding-left: 16px;
+// `;
+const SidebarLinkDiv = styled.div`
+  color: #444444;
 `;
 const EmptyDiv = styled.div`
   padding: 8px;
 `;
 
-const Sidebar = ({ auth }) => {
+// const Sidebar = ({ auth }) => {
+const Sidebar = () => {
   useEffect(() => {
     let elem = document.querySelector('.sidenav');
     M.Sidenav.init(elem, {
@@ -28,28 +32,28 @@ const Sidebar = ({ auth }) => {
     });
   }, []);
 
-  const loginContent = () => {
-    return (
-      <div>
-        <SidebarInfoDiv>
-          <span className="white-text name">{auth?.name}</span>
-        </SidebarInfoDiv>
-        <a href="#email">
-          <span className="white-text">{auth?.email}</span>
-        </a>
-      </div>
-    );
-  };
+  // const loginContent = () => {
+  //   return (
+  //     <div>
+  //       <SidebarInfoDiv>
+  //         <span className="white-text name">{auth?.name}</span>
+  //       </SidebarInfoDiv>
+  //       <a href="#email">
+  //         <span className="white-text">{auth?.email}</span>
+  //       </a>
+  //     </div>
+  //   );
+  // };
 
-  const logoutContent = () => {
-    return (
-      <SidebarInfoContainerDiv>
-        <a href="/login">
-          <span className="white-text">Log in here!</span>
-        </a>
-      </SidebarInfoContainerDiv>
-    );
-  };
+  // const logoutContent = () => {
+  //   return (
+  //     <SidebarInfoContainerDiv>
+  //       <a href="/login">
+  //         <span className="white-text">Log in here!</span>
+  //       </a>
+  //     </SidebarInfoContainerDiv>
+  //   );
+  // };
 
   return (
     <span>
@@ -73,26 +77,27 @@ const Sidebar = ({ auth }) => {
         <EmptyDiv />
         <li>
           <a className="waves-effect" href="/">
-            <i className="material-icons">acount</i>
-            About
+            <i className="material-icons">account_circle</i>
+            <SidebarLinkDiv>About</SidebarLinkDiv>
           </a>
         </li>
         <li>
           <a className="waves-effect" href="/photography">
             <i className="material-icons">photo</i>
-            Photography
+            <SidebarLinkDiv>Photography</SidebarLinkDiv>
           </a>
         </li>
         <li>
           <a className="waves-effect" href="/cinematography">
-            <i className="material-icons">cinema</i>
-            Cinematography
+            <i className="material-icons">camera_roll</i>
+
+            <SidebarLinkDiv>Cinematography</SidebarLinkDiv>
           </a>
         </li>
         <li>
           <a className="waves-effect" href="/contact">
             <i className="material-icons">phone</i>
-            Contact
+            <SidebarLinkDiv>Contact</SidebarLinkDiv>
           </a>
         </li>
         {/* <div className="divider" /> */}
@@ -108,8 +113,9 @@ const Sidebar = ({ auth }) => {
   );
 };
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
+// function mapStateToProps({ auth }) {
+//   return { auth };
+// }
 
-export default connect(mapStateToProps)(Sidebar);
+// export default connect(mapStateToProps)(Sidebar);
+export default Sidebar;
