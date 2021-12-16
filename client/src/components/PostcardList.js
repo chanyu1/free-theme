@@ -73,8 +73,8 @@ const PostcardList = ({
             <p>&nbsp;&nbsp;{postcard.description}</p>
           </DescriptionDiv>
           <OwnerDiv className="card-content grey-text text-darken-1">
-            {/* <p>{postcard.owner}</p>
-            <p>{postcard.ownerEmail}</p> */}
+            <p>{postcard.owner}</p>
+            <p>{postcard.ownerEmail}</p>
           </OwnerDiv>
         </PostcardDiv>
       );
