@@ -75,22 +75,21 @@ const Sidebar = () => {
           </div> */}
         </li>
         <EmptyDiv />
-        <li>
+        {/* <li>
           <a className="waves-effect" href="/">
             <i className="material-icons">account_circle</i>
             <SidebarLinkDiv>About</SidebarLinkDiv>
           </a>
-        </li>
+        </li> */}
         <li>
           <a className="waves-effect" href="/photography">
             <i className="material-icons">photo</i>
             <SidebarLinkDiv>Photography</SidebarLinkDiv>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a className="waves-effect" href="/cinematography">
             <i className="material-icons">camera_roll</i>
-
             <SidebarLinkDiv>Cinematography</SidebarLinkDiv>
           </a>
         </li>
@@ -99,7 +98,7 @@ const Sidebar = () => {
             <i className="material-icons">phone</i>
             <SidebarLinkDiv>Contact</SidebarLinkDiv>
           </a>
-        </li>
+        </li> */}
         {/* <div className="divider" /> */}
       </ul>
       <SidebarOpenA

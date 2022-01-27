@@ -37,8 +37,8 @@ const App = ({ common }) => {
           {/* <Route exact path="/" component={Auth(About, false)} /> */}
           <Route exact path="/" component={Auth(Postcard, false)} />
           <Route exact path="/photography" component={Auth(Postcard, false)} />
-          <Route path="/cinematography" component={Auth(Cinema, false)} />
-          <Route path="/contact" component={Auth(Contact, false)} />
+          {/* <Route path="/cinematography" component={Auth(Cinema, false)} />
+          <Route path="/contact" component={Auth(Contact, false)} /> */}
           <Route path="/signup" component={Auth(Register, false)} />
           <Route path="/login" component={Auth(Login, false)} />
           {/* <Route path="/photography/new" component={Auth(PostcardNew, true)} /> */}
