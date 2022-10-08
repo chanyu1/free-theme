@@ -9,7 +9,7 @@ const Postcard = ({ common }) => {
     <Fragment>
       <PostcardList />
       <AtmFloatBtn
-        location="/photography/new"
+        location="/postcard/new"
         icon="add"
         hideBtn={common.hideAddBtn}
       />

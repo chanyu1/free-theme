@@ -6,13 +6,14 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import styled from 'styled-components';
 
 import { logoutUser } from '../_actions/userAction';
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 
 const HeaderWrapperDiv = styled.div`
   font-family: Lexend, sans-serif;
 `;
 const BrandLogoDiv = styled.div`
   font-size: 2em;
+  padding-left: 24px;
 `;
 const ContentDiv = styled.div`
   margin-right: 18px;
@@ -22,7 +23,7 @@ const Header = ({ auth, logoutUser }) => {
   const loginContent = () => {
     return [
       <li key="logout">
-        <a onClick={() => logoutUser()}>Log out</a>
+        <a onClick={() => logoutUser()}>Logout</a>
       </li>,
       <li key="github">
         <a href="https://github.com/chanyu1" target="_blank" rel="noreferrer">
@@ -35,7 +36,7 @@ const Header = ({ auth, logoutUser }) => {
   const logoutContent = () => {
     return [
       <li key="login">
-        <Link to="/login">Log in</Link>
+        <Link to="/login">Login</Link>
       </li>,
       <li key="signup">
         <Link to="/signup">Sign up</Link>
@@ -47,8 +48,8 @@ const Header = ({ auth, logoutUser }) => {
     <HeaderWrapperDiv>
       <nav className="blue-grey">
         <div className="nav-wrapper">
-          <Sidebar />
-          <Link className="left" to={auth?.isAuth ? '/postcards' : '/'}>
+          {/* <Sidebar /> */}
+          <Link className="left" to={auth?.isAuth ? '/postcard' : '/'}>
             <BrandLogoDiv>KOU</BrandLogoDiv>
           </Link>
           <ul className="right">

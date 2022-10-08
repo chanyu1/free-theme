@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { registerUser } from '../../_actions/userAction';
 import fieldData from './data/fieldData';
 import OrgRegisterForm from '../../components/atomic/organisms/OrgRegisterForm';
+import validateEmails from '../../utils/validateEmails';
 
 const FormWrapperDiv = styled.div`
   margin: 15vh 0;
@@ -52,6 +53,9 @@ const Register = ({ registerUser, history }) => {
 
 const validate = (values) => {
   const errors = {};
+
+  errors.email = validateEmails(values.email || '');
+
   _.each(fieldData, ({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;

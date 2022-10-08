@@ -31,7 +31,7 @@ const Login = ({ loginUser }) => {
         onSubmit={onSubmitHandler}
         fieldData={fieldData}
         leftButtonText="Sign up"
-        rightButtonText="Log in"
+        rightButtonText="Login"
       />
     </FormWrapperDiv>
   );

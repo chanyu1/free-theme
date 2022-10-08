@@ -11,7 +11,7 @@ export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {
   const res = await axios.post('/api/postcards/upload', dataToSubmit, {
     header: { 'content-type': 'multipart/form-data' },
   });
-  history.push('/postcards');
+  history.push('/postcard');
   dispatch({ type: UPLOAD_POSTCARD, payload: res.data });
 };
 

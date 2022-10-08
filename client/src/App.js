@@ -5,13 +5,11 @@ import { createGlobalStyle } from 'styled-components';
 
 import Auth from './hoc/auth';
 import Header from './components/Header';
-import About from './pages/about/About';
 import Postcard from './pages/postcard/Postcard';
-import Cinema from './pages/cinema/Cinema';
-import Contact from './pages/contact/Contact';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import PostcardNew from './pages/postcardNew/PostcardNew';
+import NotFound from './pages/notFound/NotFound';
 
 const App = ({ common }) => {
   const GlobalStyle = createGlobalStyle`
@@ -34,15 +32,16 @@ const App = ({ common }) => {
       <BrowserRouter>
         <Header />
         <Switch>
-          {/* <Route exact path="/" component={Auth(About, false)} /> */}
           <Route exact path="/" component={Auth(Postcard, false)} />
-          <Route exact path="/photography" component={Auth(Postcard, false)} />
-          {/* <Route path="/cinematography" component={Auth(Cinema, false)} />
-          <Route path="/contact" component={Auth(Contact, false)} /> */}
-          <Route path="/signup" component={Auth(Register, false)} />
-          <Route path="/login" component={Auth(Login, false)} />
-          {/* <Route path="/photography/new" component={Auth(PostcardNew, true)} /> */}
-          <Route path="/photography/new" component={Auth(PostcardNew, false)} />
+          <Route exact path="/postcard" component={Auth(Postcard, false)} />
+          <Route exact path="/signup" component={Auth(Register, false)} />
+          <Route exact path="/login" component={Auth(Login, false)} />
+          <Route
+            exact
+            path="/postcard/new"
+            component={Auth(PostcardNew, true)}
+          />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     </Fragment>

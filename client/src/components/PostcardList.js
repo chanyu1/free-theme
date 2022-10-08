@@ -17,19 +17,17 @@ const PostcardDiv = styled.div`
   margin: 10px 0;
   text-align: left;
   display: inline-block;
+  cursor: pointer;
 `;
 const ThemeDiv = styled.div`
   font-size: 1.3rem;
-  padding-top: 24px;
-  padding-bottom: 10px;
+  padding: 16px 18px 8px;
 `;
 const DescriptionDiv = styled.div`
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 6px 18px;
 `;
 const OwnerDiv = styled.div`
-  padding-top: 10px;
-  padding-bottom: 24px;
+  padding: 8px 18px 16px;
 `;
 
 const PostcardList = ({
@@ -66,15 +64,11 @@ const PostcardList = ({
           <div className="card-image">
             <img src={postcard.photos[0].photoName} />
           </div>
-          <ThemeDiv className="card-content">
-            <p>{postcard.theme}</p>
-          </ThemeDiv>
-          <DescriptionDiv className="card-content">
-            <p>&nbsp;&nbsp;{postcard.description}</p>
-          </DescriptionDiv>
-          <OwnerDiv className="card-content grey-text text-darken-1">
-            <p>{postcard.owner}</p>
-            <p>{postcard.ownerEmail}</p>
+          <ThemeDiv>{postcard.theme}</ThemeDiv>
+          <DescriptionDiv>&nbsp;&nbsp;{postcard.description}</DescriptionDiv>
+          <OwnerDiv className="grey-text text-darken-1">
+            {postcard.owner}
+            {/* {postcard.ownerEmail} */}
           </OwnerDiv>
         </PostcardDiv>
       );

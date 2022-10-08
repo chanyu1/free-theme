@@ -50,14 +50,14 @@ const OrgPostcardNewForm = ({
         }
       />
       {renderInputField(fieldData)}
-      <Link to="/postcards" className="white-text btn-flat red">
+      <Link to="/postcard" className="white-text btn-flat red">
         {leftButtonText}
       </Link>
       <AtmBtn
         buttonText={rightButtonText}
         color="yellow darken-3"
         icon="done"
-        isDisabled={true}
+        // isDisabled={true}
       />
     </form>
   );

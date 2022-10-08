@@ -9,7 +9,7 @@ export const authUser = (history, option, adminRoute) => async (dispatch) => {
   } else if (!res.data.isAdmin && adminRoute) {
     history.push('/admin');
   } else if (res.data.isAuth && !option) {
-    history.push('/postcards');
+    history.push('/postcard');
   }
   dispatch({ type: AUTH_USER, payload: res.data });
 };
@@ -27,7 +27,7 @@ export const registerUser = (dataToSubmit, history) => async (dispatch) => {
 export const loginUser = (dataToSubmit) => async (dispatch) => {
   const res = await axios.post('/api/users/login', dataToSubmit);
   if (res.data.success) {
-    window.location.replace('/postcards');
+    window.location.replace('/postcard');
     dispatch({ type: LOGIN_USER, payload: res.data });
   } else {
     alert(res.data.message);

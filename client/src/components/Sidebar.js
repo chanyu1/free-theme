@@ -49,7 +49,7 @@ const Sidebar = () => {
   //   return (
   //     <SidebarInfoContainerDiv>
   //       <a href="/login">
-  //         <span className="white-text">Log in here!</span>
+  //         <span className="white-text">Login here!</span>
   //       </a>
   //     </SidebarInfoContainerDiv>
   //   );

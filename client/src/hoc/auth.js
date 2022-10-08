@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { authUser } from '../_actions/userAction';
 
 // null  -> Anyone can enter
-// true  -> Only log in user can enter
-// false -> Log in user can not enter
+// true  -> Only login user can enter
+// false -> Login user can not enter
 export default (SpecificComponent, option, adminRoute = null) => {
   const AuthenticationCheck = ({ history }) => {
     const dispatch = useDispatch();
