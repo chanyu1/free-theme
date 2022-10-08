@@ -50,7 +50,7 @@ const Header = ({ auth, logoutUser }) => {
         <div className="nav-wrapper">
           {/* <Sidebar /> */}
           <Link className="left" to={auth?.isAuth ? '/postcard' : '/'}>
-            <BrandLogoDiv>KOU</BrandLogoDiv>
+            <BrandLogoDiv>Free Theme</BrandLogoDiv>
           </Link>
           <ul className="right">
             <ContentDiv>
