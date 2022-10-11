@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
+import Search from '../../components/Search';
 import PostcardList from '../../components/PostcardList';
 import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
 
 const Postcard = ({ common }) => {
   return (
     <Fragment>
+      <Search />
       <PostcardList />
       <AtmFloatBtn
         location="/postcard/new"

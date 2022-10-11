@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -37,32 +37,9 @@ const PostcardList = ({
   fixScrollbar,
   postcards,
 }) => {
-  const [search, setSearch] = useState('');
-
   useEffect(() => {
     fetchPostcards();
   }, []);
-
-  const onChangeSearch = (e) => {
-    e.preventDefault();
-
-    setSearch(e.target.value);
-  };
-
-  const onSearch = (e) => {
-    e.preventDefault();
-
-    if (search === null || search === '') {
-      //
-    } else {
-      const filterData = postcards.postcardList.filter((row) =>
-        row.theme.includes(search),
-      );
-      console.log(filterData);
-      console.log(postcards);
-      setSearch('');
-    }
-  };
 
   const openPostcardHandler = (photos) => {
     postcardModal(photos);
@@ -77,29 +54,12 @@ const PostcardList = ({
   };
 
   const renderPostcards = () => {
-    // console.log(lists);
-    // if (lists.length === 0) {
-    //   return lists.map((postcard) => {
-    //     return (
-    //       <PostcardDiv
-    //         className="card"
-    //         onClick={() => openPostcardHandler(postcard.photos)}
-    //         key={postcard._id}
-    //       >
-    //         <div className="card-image">
-    //           <img src={postcard.photos[0].photoName} />
-    //         </div>
-    //         <ThemeDiv>{postcard.theme}</ThemeDiv>
-    //         <DescriptionDiv>&nbsp;&nbsp;{postcard.description}</DescriptionDiv>
-    //         <OwnerDiv className="grey-text text-darken-1">
-    //           {postcard.owner}
-    //           {/* {postcard.ownerEmail} */}
-    //         </OwnerDiv>
-    //       </PostcardDiv>
-    //     );
-    //   });
-    // } else {
-    return postcards.postcardList.map((postcard) => {
+    let postcardData =
+      postcards.searchPostcardList.length > 0
+        ? postcards.searchPostcardList
+        : postcards.postcardList;
+
+    return postcardData.map((postcard) => {
       return (
         <PostcardDiv
           className="card"
@@ -118,7 +78,6 @@ const PostcardList = ({
         </PostcardDiv>
       );
     });
-    // }
   };
 
   return (
@@ -129,17 +88,12 @@ const PostcardList = ({
           onConfirm={() => closePostcardHandler()}
         />
       )}
-      <form onSubmit={(e) => onSearch(e)}>
-        <input type="text" value={search} onChange={onChangeSearch} />
-        <button type="submit">search</button>
-      </form>
       <PostcardsWrapperDiv>{renderPostcards()}</PostcardsWrapperDiv>
     </Fragment>
   );
 };
 
 function mapStateToProps({ postcards }) {
-  console.log(postcards);
   return { postcards };
 }
 
