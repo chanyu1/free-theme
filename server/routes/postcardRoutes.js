@@ -1,5 +1,10 @@
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink);
+
 const { auth } = require('../middlewares/auth');
 const { upload } = require('../middlewares/upload');
+const { uploadFile, DownloadFile } = require('../middlewares/s3');
 
 const mongoose = require('mongoose');
 const Postcard = mongoose.model('postcards');
@@ -11,10 +16,17 @@ module.exports = (app) => {
     return res.send(postcards);
   });
 
-  app.post('/api/postcards/upload', auth, upload, (req, res) => {
+  app.post('/api/postcards/upload', auth, upload, async (req, res) => {
+    const files = req.files;
+
+    for (let i = 0; i < files.length; i++) {
+      await uploadFile(files[i]);
+      await unlinkFile(files[i].path);
+    }
+
     const postcard = new Postcard({
       photos: req.files.map((photo) => ({
-        photoName: `./uploads/${photo.filename}`,
+        photoName: photo.filename,
       })),
       theme: req.body.theme,
       description: req.body.description,
@@ -28,5 +40,12 @@ module.exports = (app) => {
 
       return res.status(200).send({ success: true });
     });
+  });
+
+  app.get('/api/postcards/:key', (req, res) => {
+    const key = req.params.key;
+    const readStream = DownloadFile(key);
+
+    readStream.pipe(res);
   });
 };

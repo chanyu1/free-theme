@@ -34,7 +34,7 @@ const ModalOverlay = ({ photoList, onConfirm }) => {
     return photoList.map((photo) => {
       return (
         <div key={photo.photoName}>
-          <PhotoImg src={photo.photoName} />
+          <PhotoImg src={`/api/postcards/${photo.photoName}`} />
         </div>
       );
     });

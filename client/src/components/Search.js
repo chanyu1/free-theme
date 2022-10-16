@@ -43,7 +43,7 @@ const Search = ({ searchPostcards, postcards }) => {
           type="text"
           value={search}
           onChange={onChangeSearch}
-          placeholder="Input search text"
+          placeholder="Input theme title"
         />
         <AtmBtn buttonText="search" color="blue" />
       </SearchDiv>

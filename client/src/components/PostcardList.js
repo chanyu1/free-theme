@@ -67,7 +67,7 @@ const PostcardList = ({
           key={postcard._id}
         >
           <div className="card-image">
-            <img src={postcard.photos[0].photoName} />
+            <img src={`/api/postcards/${postcard.photos[0].photoName}`} />
           </div>
           <ThemeDiv>{postcard.theme}</ThemeDiv>
           <DescriptionDiv>&nbsp;&nbsp;{postcard.description}</DescriptionDiv>
