@@ -30,27 +30,31 @@ module.exports = (app) => {
     async (req, res) => {
       const files = req.files;
 
-      for (let i = 0; i < files.length; i++) {
-        await uploadFile(files[i]);
-        await unlinkFile(files[i].path);
+      try {
+        for (let i = 0; i < files.length; i++) {
+          await uploadFile(files[i]);
+          await unlinkFile(files[i].path);
+        }
+
+        const postcard = new Postcard({
+          photos: req.files.map((photo) => ({
+            photoName: photo.filename,
+          })),
+          theme: req.body.theme,
+          description: req.body.description,
+          owner: req.user.name,
+          ownerEmail: req.user.email,
+          dateSent: Date.now(),
+        });
+
+        postcard.save((err, postcardInfo) => {
+          if (err) return res.send({ success: false, err });
+
+          return res.status(200).send({ success: true });
+        });
+      } catch (error) {
+        console.log(error);
       }
-
-      const postcard = new Postcard({
-        photos: req.files.map((photo) => ({
-          photoName: photo.filename,
-        })),
-        theme: req.body.theme,
-        description: req.body.description,
-        owner: req.user.name,
-        ownerEmail: req.user.email,
-        dateSent: Date.now(),
-      });
-
-      postcard.save((err, postcardInfo) => {
-        if (err) return res.send({ success: false, err });
-
-        return res.status(200).send({ success: true });
-      });
     },
   );
 
