@@ -14,6 +14,9 @@ app.use(cookieParser());
 require('./routes/userRoutes')(app);
 require('./routes/postcardRoutes')(app);
 
+console.log(__dirname);
+console.log(path.join(__dirname, '../client', 'public', 'uploads'));
+
 const mongoose = require('mongoose');
 mongoose
   .connect(keys.mongoURI, {

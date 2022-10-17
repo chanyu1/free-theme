@@ -1,9 +1,12 @@
+const multer = require('multer');
+const upload = multer({ dest: '../client/public/uploads' });
+
 const fs = require('fs');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
 const { auth } = require('../middlewares/auth');
-const { upload } = require('../middlewares/upload');
+// const { upload } = require('../middlewares/upload');
 const { uploadFile, DownloadFile } = require('../middlewares/s3');
 
 const mongoose = require('mongoose');
@@ -16,31 +19,36 @@ module.exports = (app) => {
     return res.send(postcards);
   });
 
-  app.post('/api/postcards/upload', auth, upload, async (req, res) => {
-    const files = req.files;
+  app.post(
+    '/api/postcards/upload',
+    auth,
+    upload.array('image', 12),
+    async (req, res) => {
+      const files = req.files;
 
-    for (let i = 0; i < files.length; i++) {
-      await uploadFile(files[i]);
-      await unlinkFile(files[i].path);
-    }
+      for (let i = 0; i < files.length; i++) {
+        await uploadFile(files[i]);
+        await unlinkFile(files[i].path);
+      }
 
-    const postcard = new Postcard({
-      photos: req.files.map((photo) => ({
-        photoName: photo.filename,
-      })),
-      theme: req.body.theme,
-      description: req.body.description,
-      owner: req.user.name,
-      ownerEmail: req.user.email,
-      dateSent: Date.now(),
-    });
+      const postcard = new Postcard({
+        photos: req.files.map((photo) => ({
+          photoName: photo.filename,
+        })),
+        theme: req.body.theme,
+        description: req.body.description,
+        owner: req.user.name,
+        ownerEmail: req.user.email,
+        dateSent: Date.now(),
+      });
 
-    postcard.save((err, postcardInfo) => {
-      if (err) return res.send({ success: false, err });
+      postcard.save((err, postcardInfo) => {
+        if (err) return res.send({ success: false, err });
 
-      return res.status(200).send({ success: true });
-    });
-  });
+        return res.status(200).send({ success: true });
+      });
+    },
+  );
 
   app.get('/api/postcards/:key', (req, res) => {
     const key = req.params.key;
