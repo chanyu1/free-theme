@@ -2,10 +2,10 @@
   "name": "free-theme",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "index.js",
   "engines": {
     "node": "14.17.6",
-    "npm": "7.24.1"
+    "npm": "8.19.2"
   },
   "scripts": {
     "start": "node server/index.js",
