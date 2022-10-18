@@ -14,4 +14,4 @@
 - Node.js(Express)
 - MongoDB
 - Heroku
-- AWS S3
+- AWS(S3)
