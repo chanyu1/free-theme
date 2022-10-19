@@ -10,7 +10,7 @@
 
 ### 開発スタック
 
-- React, Redux(React-redux) / アトミックデザインパターン
+- React, React-redux / アトミックデザインパターン
 - styled-components
 - Node.js(Express)
 - MongoDB
