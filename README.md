@@ -10,8 +10,9 @@
 
 ### 開発スタック
 
-- React(React-redux, Hooks, アトミックデザイン, Styled Components)
+- React, Redux(React-redux) / アトミックデザインパターン
+- styled-components
 - Node.js(Express)
 - MongoDB
-- Heroku
 - AWS(S3)
+- Heroku
