@@ -13,10 +13,10 @@ export const fetchPostcards = () => async (dispatch) => {
 };
 
 export const uploadPostcard = (dataToSubmit, history) => async (dispatch) => {
+  history.push('/postcard');
   const res = await axios.post('/api/postcards/upload', dataToSubmit, {
     header: { 'content-type': 'multipart/form-data' },
   });
-  history.push('/postcard');
   dispatch({ type: UPLOAD_POSTCARD, payload: res.data });
 };
 

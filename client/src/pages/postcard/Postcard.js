@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import Search from '../../components/Search';
 import PostcardList from '../../components/PostcardList';
 import AtmFloatBtn from '../../components/atomic/atoms/AtmFloatBtn';
+import NowLoading from '../../components/NowLoading';
 
 const Postcard = ({ common }) => {
-  return (
+  return common.isLoading ? (
+    <NowLoading />
+  ) : (
     <Fragment>
       <Search />
       <PostcardList />

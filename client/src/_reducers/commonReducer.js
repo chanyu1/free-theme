@@ -1,8 +1,9 @@
-import { HIDE_ADD_BTN, FIX_SCROLLBAR } from '../_actions/types';
+import { HIDE_ADD_BTN, FIX_SCROLLBAR, IS_LOADING } from '../_actions/types';
 
 const initialState = {
   hideAddBtn: false,
   fixScrollbar: false,
+  isLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +17,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fixScrollbar: action.payload,
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
       };
     default:
       return state;
