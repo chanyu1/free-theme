@@ -1,8 +1,8 @@
 # Free Theme
 
-### アプリケーション
+<!-- ### アプリケーション -->
 
-- [Free Theme](https://free-theme.herokuapp.com/)
+<!-- - [Free Theme](https://free-theme.herokuapp.com/) -->
 
 ### 開発概要
 
@@ -15,4 +15,4 @@
 - Node.js(Express)
 - MongoDB
 - AWS(S3)
-- Heroku
+<!-- - Heroku -->
